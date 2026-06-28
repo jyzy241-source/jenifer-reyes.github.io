@@ -419,33 +419,37 @@
 
     .contact-txt { font-size: 0.85rem; color: #9999bb; }
 
-    .contact-form { display: flex; flex-direction: column; gap: 14px; }
+    /* CONTACT RIGHT — whatsapp buttons */
+    .contact-right { display: flex; flex-direction: column; gap: 20px; justify-content: center; }
 
-    .form-f { display: flex; flex-direction: column; gap: 5px; }
+    .wa-block { display: flex; flex-direction: column; gap: 10px; }
 
-    .form-f label {
-      font-family: 'Space Mono', monospace; font-size: 0.62rem;
-      letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray);
+    .wa-label {
+      font-family: 'Space Mono', monospace; font-size: 0.6rem;
+      letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray);
     }
 
-    .form-f input, .form-f textarea {
-      background: var(--bg); border: 1px solid var(--border); border-radius: 6px;
-      padding: 11px 14px; font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.88rem; color: var(--white); outline: none; transition: border-color 0.2s;
+    .wa-btn {
+      display: inline-flex; align-items: center; gap: 12px;
+      padding: 16px 22px; border-radius: 8px;
+      background: rgba(37,211,102,0.07); border: 1px solid rgba(37,211,102,0.2);
+      text-decoration: none; transition: all 0.2s;
     }
 
-    .form-f input:focus, .form-f textarea:focus { border-color: var(--accent); }
-    .form-f textarea { resize: vertical; min-height: 110px; }
+    .wa-btn:hover { background: rgba(37,211,102,0.14); border-color: rgba(37,211,102,0.4); transform: translateX(4px); }
 
-    .btn-submit {
-      background: var(--blue); color: var(--white); border: none;
-      padding: 13px 28px; border-radius: 4px;
-      font-family: 'Space Mono', monospace; font-size: 0.72rem; font-weight: 700;
-      letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer;
-      align-self: flex-start; transition: background 0.2s, box-shadow 0.2s;
+    .wa-btn svg { flex-shrink: 0; }
+
+    .wa-btn-text { display: flex; flex-direction: column; }
+    .wa-btn-title { font-size: 0.88rem; font-weight: 600; color: #4ddb7a; }
+    .wa-btn-num { font-family: 'Space Mono', monospace; font-size: 0.72rem; color: #3ab860; margin-top: 2px; }
+
+    .contact-divider {
+      font-family: 'Space Mono', monospace; font-size: 0.6rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gray); text-align: center; padding: 8px 0;
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
     }
-
-    .btn-submit:hover { background: var(--accent); box-shadow: 0 0 24px rgba(99,102,255,0.4); }
 
     /* FOOTER */
     footer {
@@ -463,16 +467,13 @@
     .fade-up { opacity: 0; transform: translateY(22px); transition: opacity 0.6s, transform 0.6s; }
     .fade-up.visible { opacity: 1; transform: translateY(0); }
 
-    /* LANG */
-    [data-en], [data-es] { transition: opacity 0.2s; }
-
     @media (max-width: 900px) {
       nav { padding: 14px 20px; }
       .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); padding: 16px 20px; border-bottom: 1px solid var(--border); gap: 16px; }
       .nav-links.open { display: flex; }
       .hamburger { display: flex; }
       .nav-cta { display: none; }
-      #hero, .about-grid, .project-grid, .contact-grid { grid-template-columns: 1fr !important; gap: 36px; }
+      .about-grid, .project-grid, .contact-grid { grid-template-columns: 1fr !important; gap: 36px; }
       #hero { padding: 100px 20px 56px; }
       section { padding: 60px 20px; }
       .hero-stats { display: none; }
@@ -498,7 +499,7 @@
 
   <!-- NAV -->
   <nav>
-    <a href="#hero" class="nav-logo">JR<span>.</span>DEV</a>
+   
     <ul class="nav-links" id="navLinks">
       <li><a href="#about"><span class="t" data-es="Sobre mí" data-en="About"></span></a></li>
       <li><a href="#skills"><span class="t" data-es="Habilidades" data-en="Skills"></span></a></li>
@@ -606,6 +607,7 @@
           <span class="pill">React.js</span><span class="pill">JavaScript</span>
           <span class="pill">HTML5</span><span class="pill">CSS3</span>
           <span class="pill">React Router</span><span class="pill">Responsive</span>
+          <span class="pill">Figma</span>
         </div>
       </div>
       <div class="skill-block">
@@ -614,6 +616,7 @@
         <div class="skill-pills">
           <span class="pill">Node.js</span><span class="pill">Express.js</span>
           <span class="pill">PostgreSQL</span><span class="pill">REST APIs</span>
+          <span class="pill">jsPDF</span><span class="pill">Resend API</span>
         </div>
       </div>
       <div class="skill-block">
@@ -623,6 +626,7 @@
           <span class="pill">Ubuntu Linux</span><span class="pill">Nginx</span>
           <span class="pill">PM2</span><span class="pill">SSL/Certbot</span>
           <span class="pill">Vercel</span><span class="pill">Cloudflare DNS</span>
+          <span class="pill">GoDaddy DNS</span>
         </div>
       </div>
       <div class="skill-block">
@@ -639,17 +643,20 @@
         <h3><span class="t" data-es="Herramientas" data-en="Tools"></span></h3>
         <div class="skill-pills">
           <span class="pill">Git</span><span class="pill">GitHub</span>
-          <span class="pill">VS Code</span>
-          <span class="pill">Postman</span>
+          <span class="pill">VS Code</span><span class="pill">Postman</span>
+          <span class="pill">AWS CDK</span>
         </div>
       </div>
       <div class="skill-block">
         <div class="skill-block-num">06</div>
         <h3><span class="t" data-es="Certificaciones" data-en="Certifications"></span></h3>
         <div class="skill-pills">
+          <span class="pill">freeCodeCamp — JavaScript Algorithms & Data Structures</span>
           <span class="pill">freeCodeCamp — Responsive Web Design</span>
           <span class="pill">freeCodeCamp — Relational Database</span>
-          <span class="pill">Cisco — Basic Network</span><span class="pill">Ciberseguridad — Talento Digital</span>
+          <span class="pill">AWS CDK — Getting Started</span>
+          <span class="pill">Cisco — Basic Network</span>
+          <span class="pill">Ciberseguridad — Talento Digital</span>
         </div>
       </div>
     </div>
@@ -720,18 +727,18 @@
           <div class="proj-emoji">🏦</div>
         </div>
         <div class="proj-body">
-          <div class="proj-type t" data-es="Fintech · En desarrollo" data-en="Fintech · In development"></div>
+          <div class="proj-type t" data-es="Fintech · En producción" data-en="Fintech · Live in production"></div>
           <div class="proj-name">JM ODEPEM FINANCIERA</div>
           <p class="proj-desc t"
-            data-es="Sitio institucional para una financiera en República Dominicana. Solicitud de préstamo en línea en múltiples pasos, calculadora interactiva, feed de Instagram y sistema de diseño de marca."
-            data-en="Institutional website for a financial services company in the DR. Multi-step online loan application, interactive calculator, Instagram feed and full brand design system."></p>
+            data-es="Sitio institucional para una financiera en República Dominicana. Solicitud de préstamo en línea en múltiples pasos con generación de PDF, calculadora interactiva, catálogo de vehículos y sistema de diseño de marca."
+            data-en="Institutional website for a financial services company in the DR. Multi-step online loan application with PDF generation, interactive calculator, vehicle catalog and full brand design system."></p>
           <div class="proj-stack">
-            <span class="proj-tag">React.js</span><span class="proj-tag">Formspree</span>
-            <span class="proj-tag">Elfsight</span><span class="proj-tag">Vercel</span>
+            <span class="proj-tag">React.js</span><span class="proj-tag">Node.js</span>
+            <span class="proj-tag">Express</span><span class="proj-tag">jsPDF</span>
+            <span class="proj-tag">Resend API</span><span class="proj-tag">Nginx</span>
+            <span class="proj-tag">PM2</span><span class="proj-tag">SSL</span>
           </div>
-          <span class="proj-link" style="opacity:0.4;cursor:default" data-es="Próximamente — jmodepem.com" data-en="Coming soon — jmodepem.com">
-            <span class="t" data-es="Próximamente — jmodepem.com" data-en="Coming soon — jmodepem.com"></span>
-          </span>
+          <a href="https://www.jmodepem.com" target="_blank" class="proj-link">jmodepem.com →</a>
         </div>
       </div>
     </div>
@@ -763,23 +770,20 @@
           </a>
         </div>
       </div>
-      <form class="contact-form" action="https://formspree.io/f/mqeozqdj" method="POST">
-        <div class="form-f">
-          <label class="t" data-es="Tu nombre" data-en="Your name"></label>
-          <input type="text" name="name" required />
+      <div class="contact-right">
+        <div class="wa-label t" data-es="Escríbeme directamente por WhatsApp" data-en="Message me directly on WhatsApp"></div>
+        <div class="wa-block">
+          <a href="https://wa.me/18296474052?text=Hola%20Jenifer%2C%20vi%20tu%20portfolio%20y%20me%20interesa%20contactarte." target="_blank" class="wa-btn">
+            <svg viewBox="0 0 24 24" fill="#4ddb7a" width="28" height="28">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            <div class="wa-btn-text">
+              <span class="wa-btn-title t" data-es="WhatsApp Personal" data-en="WhatsApp Personal"></span>
+              <span class="wa-btn-num">829-647-4052</span>
+            </div>
+          </a>
         </div>
-        <div class="form-f">
-          <label>Email</label>
-          <input type="email" name="email" required />
-        </div>
-        <div class="form-f">
-          <label class="t" data-es="Mensaje" data-en="Message"></label>
-          <textarea name="message" required></textarea>
-        </div>
-        <button type="submit" class="btn-submit">
-          <span class="t" data-es="Enviar →" data-en="Send →"></span>
-        </button>
-      </form>
+      </div>
     </div>
   </section>
 
@@ -789,6 +793,7 @@
     <div class="footer-links">
       <a href="https://linkedin.com/in/jenifer-reyes-perez-9613a1399" target="_blank">LinkedIn</a>
       <a href="https://wolffitnessmarket.com" target="_blank">WFM</a>
+      <a href="https://www.jmodepem.com" target="_blank">JM ODEPEM</a>
       <a href="mailto:jeniferreyesperez@gmail.com">Email</a>
     </div>
   </footer>
@@ -822,10 +827,7 @@
     document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
 
     // Lang switch
-    let lang = 'es';
-
     function setLang(l) {
-      lang = l;
       document.getElementById('btnEs').classList.toggle('active', l === 'es');
       document.getElementById('btnEn').classList.toggle('active', l === 'en');
       document.querySelectorAll('.t').forEach(el => {
@@ -834,7 +836,6 @@
       });
     }
 
-    // Init Spanish
     setLang('en');
   </script>
 </body>
