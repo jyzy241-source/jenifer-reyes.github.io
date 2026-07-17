@@ -18,7 +18,7 @@
       --blue3:  #0d1035;
       --accent: #6366ff;
       --light:  #a5a8ff;
-      --white:  #f0f0ff;
+      --white: #f0f0ff;
       --gray:   #6666aa;
       --border: rgba(99,102,255,0.15);
     }
@@ -494,12 +494,11 @@
   <!-- LANG TOGGLE -->
   <div class="lang-toggle">
     <button class="lang-btn" id="btnEs" onclick="setLang('es')">ES</button>
-    <button class="lang-btn active" id="btnEn" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" id="btnEn" onclick="setLang('en')">EN</button>
   </div>
 
   <!-- NAV -->
   <nav>
-   
     <ul class="nav-links" id="navLinks">
       <li><a href="#about"><span class="t" data-es="Sobre mí" data-en="About"></span></a></li>
       <li><a href="#skills"><span class="t" data-es="Habilidades" data-en="Skills"></span></a></li>
@@ -520,9 +519,8 @@
       <span class="t" data-es="Desarrolladora Full Stack — República Dominicana" data-en="Full Stack Developer — Dominican Republic"></span>
     </div>
     <h1 class="hero-name">JENIFER<br><span class="outline">REYES</span></h1>
-    <p class="hero-sub">
-      <span class="t" data-es="Construyendo cosas que <span>realmente funcionan</span> — del código al servidor" data-en="Building things that <span>actually work</span> — from code to production"></span>
-    </p>
+    <p class="hero-sub t" data-es="Construyendo cosas que <span>realmente funcionan</span> — del código al servidor" data-en="Building things that <span>actually work</span> — from code to production"></p>
+    
     <div class="hero-bottom">
       <div class="hero-btns">
         <a href="#projects" class="btn-blue"><span class="t" data-es="Ver mi trabajo →" data-en="See my work →"></span></a>
@@ -564,15 +562,15 @@
     <h2 class="sec-title"><span class="t" data-es="QUIÉN <span>SOY</span>" data-en="WHO I <span>AM</span>"></span></h2>
     <div class="about-grid fade-up">
       <div class="about-text">
-        <p class="t"
-          data-es="Soy <strong>Ingeniera de Sistemas</strong> y desarrolladora full stack de Santiago de los Caballeros, República Dominicana. 24 años, intensa, y construyo cosas que salen a producción — no solo se ven bien en Figma."
-          data-en="I'm a <strong>Systems Engineer</strong> and full-stack developer from Santiago de los Caballeros, Dominican Republic. 24 years old, intense, and I build things that go live — not just look good in Figma."></p>
-        <p class="t"
-          data-es="Lancé una plataforma de e-commerce completa para una tienda de suplementos deportivos con pagos reales, emails automáticos y configuración de servidor en producción. Soy dueña de los proyectos desde la primera línea de código hasta el día del deploy."
-          data-en="I shipped a complete e-commerce platform for a supplements retailer with real payments, automated emails, and production server setup. I own projects from first line of code to deployment day."></p>
-        <p class="t"
-          data-es="Depuro a las 2am, leo la documentación y no paro hasta que funciona."
-          data-en="I debug at 2am, I read docs, and I don't stop until it works."></p>
+        <p class="t" 
+           data-es="Soy <strong>Ingeniera de Sistemas</strong> y desarrolladora full stack de Santiago de los Caballeros, República Dominicana. 24 años, intensa, y construyo cosas que salen a producción — no solo se ven bien en Figma." 
+           data-en="I'm a <strong>Systems Engineer</strong> and full-stack developer from Santiago de los Caballeros, Dominican Republic. 24 years old, intense, and I build things that go live — not just look good in Figma."></p>
+        <p class="t" 
+           data-es="Lancé una plataforma de e-commerce completa para una tienda de suplementos deportivos con pagos reales, emails automáticos y configuración de servidor en producción. Soy dueña de los proyectos desde la primera línea de código hasta el día del deploy." 
+           data-en="I shipped a complete e-commerce platform for a supplements retailer with real payments, automated emails, and production server setup. I own projects from first line of code to deployment day."></p>
+        <p class="t" 
+           data-es="Depuro a las 2am, leo la documentación y no paro hasta que funciona." 
+           data-en="I debug at 2am, I read docs, and I don't stop until it works."></p>
         <div class="about-tags">
           <span class="about-tag t" data-es="fitness" data-en="fitness"></span>
           <span class="about-tag t" data-es="autos" data-en="cars"></span>
@@ -653,7 +651,7 @@
         <div class="skill-pills">
           <span class="pill">freeCodeCamp — JavaScript Algorithms & Data Structures</span>
           <span class="pill">freeCodeCamp — Responsive Web Design</span>
-           <span class="pill">freeCodeCamp — Python</span>
+          <span class="pill">freeCodeCamp — Python</span>
           <span class="pill">freeCodeCamp — Relational Database</span>
           <span class="pill">AWS CDK — Getting Started</span>
           <span class="pill">Cisco — Basic Network</span>
@@ -800,14 +798,16 @@
   </footer>
 
   <script>
-    // Cursor
+    // Cursor Setup
     const cursor = document.getElementById('cursor');
     const ring = document.getElementById('cursorRing');
     let mx = 0, my = 0, rx = 0, ry = 0;
+    
     document.addEventListener('mousemove', e => {
       mx = e.clientX; my = e.clientY;
       cursor.style.left = mx - 4 + 'px'; cursor.style.top = my - 4 + 'px';
     });
+    
     function animRing() {
       rx += (mx - rx) * 0.14; ry += (my - ry) * 0.14;
       ring.style.left = rx - 16 + 'px'; ring.style.top = ry - 16 + 'px';
@@ -815,29 +815,38 @@
     }
     animRing();
 
-    // Hamburger
+    // Hamburger Mobile Menu
     const hb = document.getElementById('hamburger');
     const nl = document.getElementById('navLinks');
     hb.addEventListener('click', () => nl.classList.toggle('open'));
     nl.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nl.classList.remove('open')));
 
-    // Scroll fade
+    // Scroll Fade-in Observer
     const obs = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.08 });
     document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
 
-    // Lang switch
-    function setLang(l) {
-      document.getElementById('btnEs').classList.toggle('active', l === 'es');
-      document.getElementById('btnEn').classList.toggle('active', l === 'en');
+    // Dynamic Inline i18n Translation Engine
+    function setLang(lang) {
+      document.getElementById('btnEs').classList.toggle('active', lang === 'es');
+      document.getElementById('btnEn').classList.toggle('active', lang === 'en');
+      
+      // Mapea directamente los atributos data-es y data-en inyectando el marcado interno
       document.querySelectorAll('.t').forEach(el => {
-        const val = el.getAttribute('data-' + l);
-        if (val) el.innerHTML = val;
+        const value = el.getAttribute('data-' + lang);
+        if (value !== null) {
+          el.innerHTML = value;
+        }
       });
+      localStorage.setItem('preferredLang', lang);
     }
 
-    setLang('en');
+    // Persistent Initialization
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('preferredLang') || 'en';
+      setLang(savedLang);
+    });
   </script>
 </body>
 </html>
