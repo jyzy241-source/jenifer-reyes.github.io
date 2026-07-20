@@ -331,7 +331,7 @@
     /* PROJECTS */
     #projects { background: var(--bg); }
 
-    .project-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+    .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 28px; }
 
     .proj-card {
       background: var(--bg2); border: 1px solid var(--border); border-radius: 8px;
@@ -529,7 +529,7 @@
       </div>
       <div class="hero-stats">
         <div><div class="h-stat-num">2+</div><div class="h-stat-label"><span class="t" data-es="Años" data-en="Years"></span></div></div>
-        <div><div class="h-stat-num">2</div><div class="h-stat-label"><span class="t" data-es="Proyectos" data-en="Projects"></span></div></div>
+        <div><div class="h-stat-num">3</div><div class="h-stat-label"><span class="t" data-es="Proyectos" data-en="Projects"></span></div></div>
         <div><div class="h-stat-num">∞</div><div class="h-stat-label"><span class="t" data-es="Café" data-en="Coffee"></span></div></div>
       </div>
     </div>
@@ -701,6 +701,8 @@
     <div class="sec-label">// 04</div>
     <h2 class="sec-title"><span class="t" data-es="LO QUE HE <span>LANZADO</span>" data-en="WHAT I'VE <span>SHIPPED</span>"></span></h2>
     <div class="project-grid">
+      
+      <!-- PROYECTO 01 -->
       <div class="proj-card fade-up">
         <div class="proj-header">
           <div class="proj-num-bg">01</div>
@@ -721,6 +723,8 @@
           <a href="https://wolffitnessmarket.com" target="_blank" class="proj-link">wolffitnessmarket.com →</a>
         </div>
       </div>
+
+      <!-- PROYECTO 02 -->
       <div class="proj-card fade-up" style="transition-delay:0.15s">
         <div class="proj-header">
           <div class="proj-num-bg">02</div>
@@ -741,6 +745,28 @@
           <a href="https://www.jmodepem.com" target="_blank" class="proj-link">jmodepem.com →</a>
         </div>
       </div>
+
+      <!-- PROYECTO 03 (ACTUALIZADO CON TU ENLACE REAL) -->
+      <div class="proj-card fade-up" style="transition-delay:0.3s">
+        <div class="proj-header">
+          <div class="proj-num-bg">03</div>
+          <div class="proj-emoji">⚡</div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-type t" data-es="Fitness Brand · En producción" data-en="Fitness Brand · Live in production"></div>
+          <div class="proj-name">RANGERR AESTHETIC</div>
+          <p class="proj-desc t"
+            data-es="Sitio web de alto impacto para personal coaching con diseño oscuro estilo Raw Nutrition. Incluye fondo de video, galería de transformaciones responsiva en paralelo e integración oficial con el API/Feed de Instagram."
+            data-en="High-impact fitness coaching landing page with dark Raw Nutrition aesthetics. Features background video hero, responsive before/after comparison grid, and official Instagram feed API integration."></p>
+          <div class="proj-stack">
+            <span class="proj-tag">HTML5</span><span class="proj-tag">CSS3 / Flexbox</span>
+            <span class="proj-tag">JavaScript</span><span class="proj-tag">Vite</span>
+            <span class="proj-tag">Elfsight API</span><span class="proj-tag">Netlify</span>
+          </div>
+          <a href="https://jcrangerr.netlify.app/" target="_blank" class="proj-link">jcrangerr.netlify.app →</a>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -794,6 +820,7 @@
       <a href="https://linkedin.com/in/jenifer-reyes-perez-9613a1399" target="_blank">LinkedIn</a>
       <a href="https://wolffitnessmarket.com" target="_blank">WFM</a>
       <a href="https://www.jmodepem.com" target="_blank">JM ODEPEM</a>
+      <a href="https://jcrangerr.netlify.app/" target="_blank">RANGERR</a>
       <a href="mailto:jeniferreyesperez@gmail.com">Email</a>
     </div>
   </footer>
