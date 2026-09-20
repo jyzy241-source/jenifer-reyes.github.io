@@ -3,596 +3,934 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jenifer Reyes — Full Stack Engineer</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-  
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <title>Jenifer Reyes Pérez — Full Stack Engineer</title>
+  <meta name="description" content="Portafolio de Jenifer Reyes Pérez, Ingeniera de Sistemas y desarrolladora Full Stack (React, Node.js, PostgreSQL, .NET). Proyectos en producción, certificada en Scrum (SFC™)." />
+  <meta property="og:title" content="Jenifer Reyes Pérez — Full Stack Engineer" />
+  <meta property="og:description" content="Aplicaciones web y móviles en producción real. React, Node.js, PostgreSQL, C# .NET, Docker y Scrum." />
+  <meta name="theme-color" content="#0E0F2D" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@700;800&display=swap" rel="stylesheet" />
 
+  <style>
+    /* ============ TOKENS (guía Discord) ============ */
     :root {
-      --bg: #09090b;
-      --surface: #121215;
-      --surface-border: #222228;
-      --text: #f4f4f5;
-      --text-muted: #8e8e93;
-      --accent: #ff3b00; /* Naranja Fuego Editorial */
-      --accent-soft: rgba(255, 59, 0, 0.12);
-      --border: #1a1a20;
+      --color-blurple: #5865f2;
+      --color-dark-blurple: #3442d9;
+      --color-hover-blurple: #8891f2;
+      --color-spring-green: #57f287;
+      --color-fuchsia: #eb459e;
+      --color-vivid-cerulean: #00b0f4;
+      --color-ember-orange: #fda220;
+      --color-ekko-red: #de2761;
+      --color-void: #000000;
+      --color-snow: #ffffff;
+      --color-not-quite-black: #23272a;
+      --color-dark-charcoal: #2c2f33;
+      --color-fog: #babcd9;
+      --color-greyple: #99aab5;
+      --color-dim-grey: #50555f;
+
+      --surface-cosmic: #0e0f2d;
+      --surface-chrome: #23272a;
+      --surface-app: #2c2f33;
+
+      --font-display: 'Poppins', 'Nunito', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      --font-body: 'Inter', 'DM Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+      --radius-button: 12px;
+      --radius-button-lg: 16px;
+      --radius-card: 16px;
+      --radius-panel: 24px;
+      --radius-pill: 104px;
     }
 
-    html { scroll-behavior: smooth; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
 
     body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      background: var(--bg);
-      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 16px; line-height: 1.5; letter-spacing: 0.013em;
+      color: var(--color-fog);
+      background: var(--surface-cosmic);
       overflow-x: hidden;
-      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* CURSOR EDITORIAL */
-    .cursor-dot {
-      width: 10px; height: 10px;
-      background: var(--accent);
-      border-radius: 50%;
-      position: fixed; top: 0; left: 0;
-      pointer-events: none; z-index: 9999;
-      mix-blend-mode: difference;
+    /* Campo de estrellas: entorno total, sin cambiar nunca de fondo */
+    body::before {
+      content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+      background:
+        radial-gradient(1.5px 1.5px at 12% 18%, rgba(255,255,255,.55) 50%, transparent 51%),
+        radial-gradient(1px 1px at 28% 64%, rgba(255,255,255,.4) 50%, transparent 51%),
+        radial-gradient(1.5px 1.5px at 46% 32%, rgba(186,188,217,.5) 50%, transparent 51%),
+        radial-gradient(1px 1px at 63% 78%, rgba(255,255,255,.45) 50%, transparent 51%),
+        radial-gradient(1.5px 1.5px at 78% 22%, rgba(255,255,255,.5) 50%, transparent 51%),
+        radial-gradient(1px 1px at 91% 55%, rgba(186,188,217,.45) 50%, transparent 51%),
+        radial-gradient(1px 1px at 6% 88%, rgba(255,255,255,.35) 50%, transparent 51%),
+        radial-gradient(1.5px 1.5px at 54% 92%, rgba(255,255,255,.4) 50%, transparent 51%),
+        linear-gradient(180deg, #17184a 0%, #0e0f2d 38%, #0a0b22 100%);
+      background-size: 420px 420px, 380px 380px, 460px 460px, 400px 400px, 440px 440px, 360px 360px, 340px 340px, 480px 480px, 100% 100%;
     }
 
-    /* NAV MINIMALISTA */
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid var(--color-hover-blurple); outline-offset: 3px; border-radius: 6px; }
+
+    .wrap { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* ============ TIPOGRAFÍA ============ */
+    h1, h2, h3 { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; color: var(--color-snow); letter-spacing: -0.01em; }
+    h1 { font-size: clamp(2.6rem, 6.2vw, 3.8rem); line-height: 0.92; }
+    h2 { font-size: clamp(2rem, 4.6vw, 3rem); line-height: 0.95; }
+    h3 { font-size: 1.5rem; line-height: 1.1; }
+    .lead { font-size: 1.25rem; line-height: 1.38; color: var(--color-fog); }
+    strong { color: var(--color-snow); font-weight: 600; }
+
+    /* ============ BOTONES ============ */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      font-family: var(--font-body); font-weight: 500; font-size: 1rem; letter-spacing: 0.016em;
+      border-radius: var(--radius-button); text-decoration: none; cursor: pointer;
+      transition: background-color .2s, color .2s; border: 1px solid transparent;
+    }
+    .btn-primary { background: var(--color-blurple); color: var(--color-snow); padding: 19.5px 24px; }
+    .btn-primary:hover { background: var(--color-dark-blurple); }
+    .btn-secondary { background: var(--color-snow); color: var(--color-not-quite-black); border-color: var(--color-not-quite-black); padding: 15px 24px; }
+    .btn-secondary:hover { background: #ececf5; }
+    .btn-ghost { background: transparent; color: var(--color-snow); border-color: var(--color-snow); padding: 10px 16px; }
+    .btn-ghost:hover { background: rgba(255,255,255,.1); }
+    .btn-login { background: var(--color-snow); color: var(--color-void); border-color: var(--color-void); border-radius: var(--radius-button-lg); padding: 10px 16px; }
+    .btn-login:hover { background: #ececf5; }
+
+    /* ============ NAV ============ */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 24px 48px;
-      background: rgba(9, 9, 11, 0.85);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
+      background: rgba(14, 15, 45, .78); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
     }
-    .nav-brand {
-      font-family: 'Space Mono', monospace;
-      font-weight: 700; font-size: 0.9rem; letter-spacing: -0.02em;
-      color: var(--text); text-decoration: none;
-    }
-    .nav-brand span { color: var(--accent); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 72px; }
+    .nav-brand { font-family: var(--font-display); font-weight: 800; font-size: 1.05rem; letter-spacing: -0.01em; text-transform: uppercase; color: var(--color-snow); text-decoration: none; white-space: nowrap; }
+    .nav-menu { display: flex; gap: 4px; list-style: none; }
+    .nav-menu a { display: block; padding: 8px 12px; border-radius: 10px; color: var(--color-snow); text-decoration: none; font-size: 1rem; transition: background-color .2s; }
+    .nav-menu a:hover { background: rgba(255,255,255,.1); }
+    .nav-right { display: flex; align-items: center; gap: 12px; }
+    .lang-switch { display: flex; gap: 4px; padding: 4px; border: 1px solid rgba(255,255,255,.35); border-radius: var(--radius-button); }
+    .lang-btn { font-family: var(--font-body); font-weight: 500; font-size: .85rem; padding: 6px 10px; border: none; border-radius: 8px; cursor: pointer; background: transparent; color: var(--color-snow); transition: background-color .2s, color .2s; }
+    .lang-btn[aria-pressed="true"] { background: var(--color-snow); color: var(--color-not-quite-black); }
 
-    .nav-menu { display: flex; gap: 32px; list-style: none; }
-    .nav-menu a {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em;
-      color: var(--text-muted); text-decoration: none; transition: color 0.2s;
-    }
-    .nav-menu a:hover { color: var(--text); }
+    /* ============ HERO ============ */
+    #hero { padding: 152px 0 96px; }
+    .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+    .hero-copy h1 { margin-bottom: 28px; }
+    .hero-copy .lead { max-width: 460px; margin-bottom: 36px; }
+    .cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-bottom: 40px; }
+    .status-row { display: flex; flex-wrap: wrap; gap: 10px; }
+    .status-chip { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: var(--radius-pill); background: rgba(255,255,255,.08); color: var(--color-snow); font-size: .88rem; font-weight: 500; }
+    .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--color-spring-green); flex: none; }
+    .dot.cer { background: var(--color-vivid-cerulean); }
+    .dot.ora { background: var(--color-ember-orange); }
 
-    /* SWITCH IDIOMA */
-    .lang-switch {
-      display: flex; gap: 2px; background: var(--surface);
-      border: 1px solid var(--surface-border); border-radius: 6px; padding: 3px;
-    }
-    .lang-btn {
-      font-family: 'Space Mono', monospace; font-size: 0.65rem; font-weight: 700;
-      padding: 6px 12px; border-radius: 4px; border: none; cursor: pointer;
-      background: transparent; color: var(--text-muted); transition: all 0.2s;
-    }
-    .lang-btn.active { background: var(--accent); color: #fff; }
+    /* Mock-up: ventana de chat (UI real de Discord) */
+    .hero-stage { position: relative; padding: 28px 0 28px 28px; }
+    .chat-window { display: grid; grid-template-columns: 188px 1fr; background: var(--surface-app); border-radius: var(--radius-card); overflow: hidden; min-height: 420px; }
+    .chat-side { background: var(--surface-chrome); padding: 16px 12px; display: flex; flex-direction: column; gap: 4px; }
+    .chat-server { font-family: var(--font-display); font-weight: 700; font-size: .85rem; color: var(--color-snow); padding: 4px 8px 12px; text-transform: uppercase; letter-spacing: -0.01em; }
+    .chan { display: block; font-size: .9rem; color: var(--color-greyple); padding: 6px 8px; border-radius: 6px; text-decoration: none; }
+    .chan:hover { background: rgba(255,255,255,.06); color: var(--color-snow); }
+    .chan.on { background: rgba(255,255,255,.1); color: var(--color-snow); }
+    .chat-main { display: flex; flex-direction: column; min-width: 0; }
+    .chat-head { padding: 14px 20px; border-bottom: 1px solid rgba(0,0,0,.3); font-weight: 600; font-size: .92rem; color: var(--color-snow); }
+    .chat-head span { color: var(--color-greyple); font-weight: 400; }
+    .chat-body { padding: 20px; display: flex; flex-direction: column; gap: 18px; }
+    .msg { display: flex; gap: 12px; opacity: 0; animation: msgIn .5s ease forwards; }
+    .msg:nth-child(1) { animation-delay: .5s; }
+    .msg:nth-child(2) { animation-delay: 1.5s; }
+    .msg:nth-child(3) { animation-delay: 2.5s; }
+    .msg:nth-child(4) { animation-delay: 3.5s; }
+    @keyframes msgIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+    .avatar { width: 38px; height: 38px; border-radius: 50%; flex: none; display: grid; place-items: center; font-family: var(--font-display); font-weight: 800; font-size: .85rem; color: var(--color-snow); }
+    .av-j { background: var(--color-fuchsia); }
+    .av-b { background: #1f9d63; }
+    .msg-name { font-weight: 600; font-size: .92rem; color: var(--color-snow); display: flex; align-items: center; gap: 8px; }
+    .bot-tag { font-size: .62rem; font-weight: 600; background: var(--color-blurple); color: var(--color-snow); padding: 1px 5px; border-radius: 4px; text-transform: uppercase; letter-spacing: .03em; }
+    .msg-text { font-size: .92rem; color: #dcdeef; line-height: 1.45; }
+    .embed { margin-top: 6px; border-left: 4px solid var(--color-spring-green); background: var(--surface-chrome); border-radius: 6px; padding: 10px 14px; display: grid; gap: 4px; font-size: .84rem; color: var(--color-fog); }
+    .embed b { color: var(--color-snow); font-weight: 600; }
+    .embed .ok { color: var(--color-spring-green); }
 
-    /* HERO EDITORIAL */
-    #hero {
-      min-height: 100vh; padding: 160px 48px 80px;
-      display: flex; flex-direction: column; justify-content: space-between;
-      border-bottom: 1px solid var(--border);
-    }
-    .hero-top-tag {
-      font-family: 'Space Mono', monospace; font-size: 0.75rem;
-      color: var(--accent); text-transform: uppercase; letter-spacing: 0.2em;
-      margin-bottom: 24px; display: inline-block;
-    }
-    .hero-title {
-      font-size: clamp(3.5rem, 9.5vw, 9rem);
-      font-weight: 800; line-height: 0.92; letter-spacing: -0.04em;
-      text-transform: uppercase; margin-bottom: 32px;
-    }
-    .hero-title .outline {
-      color: transparent; -webkit-text-stroke: 1.5px rgba(244, 244, 245, 0.3);
-    }
-    .hero-desc {
-      font-size: clamp(1rem, 1.6vw, 1.25rem); font-weight: 300;
-      color: var(--text-muted); max-width: 620px; line-height: 1.7;
-    }
+    /* Props flotantes en los bordes */
+    .prop { position: absolute; line-height: 1; user-select: none; pointer-events: none; }
+    .prop.p1 { font-size: 5.2rem; top: -14px; right: -18px; transform: rotate(12deg); }
+    .prop.p2 { font-size: 3.6rem; bottom: -6px; left: 0; transform: rotate(-14deg); }
+    .prop.p3 { font-size: 2.6rem; top: 44%; left: -10px; transform: rotate(8deg); }
 
-    .hero-footer {
-      display: flex; justify-content: space-between; align-items: flex-end;
-      flex-wrap: wrap; gap: 24px; margin-top: 60px;
-    }
-    .btn-editorial {
-      display: inline-flex; align-items: center; gap: 12px;
-      background: var(--text); color: var(--bg);
-      padding: 16px 32px; border-radius: 4px;
-      font-family: 'Space Mono', monospace; font-size: 0.75rem; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 0.1em; text-decoration: none;
-      transition: all 0.2s;
-    }
-    .btn-editorial:hover { background: var(--accent); color: #fff; transform: translateY(-2px); }
+    /* ============ SECCIONES ============ */
+    section.block { padding: 88px 0; }
+    .sec-head { margin-bottom: 48px; max-width: 720px; }
+    .sec-head h2 { margin-bottom: 16px; }
 
-    .hero-meta {
-      display: flex; gap: 40px; border-left: 2px solid var(--accent); padding-left: 20px;
-    }
-    .meta-num { font-family: 'Space Mono', monospace; font-size: 1.8rem; font-weight: 700; color: var(--text); line-height: 1; }
-    .meta-lbl { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+    .card { border-radius: var(--radius-panel); padding: 48px; color: var(--color-snow); position: relative; }
+    .card p, .card li { color: rgba(255,255,255,.9); }
 
-    /* SECCIONES Y GRID INDUSTRIAL */
-    section { padding: 120px 48px; border-bottom: 1px solid var(--border); }
-    .sec-header { margin-bottom: 60px; }
-    .sec-num { font-family: 'Space Mono', monospace; font-size: 0.75rem; color: var(--accent); margin-bottom: 8px; }
-    .sec-title { font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 800; letter-spacing: -0.03em; text-transform: uppercase; }
+    /* Fondos propios por tarjeta: la identidad de cada sección vive aquí */
+    .g-purple { background: linear-gradient(135deg, #5b1f8f 0%, #b0339a 100%); }
+    .g-green { background: linear-gradient(135deg, #0d5a3b 0%, #1f9d63 100%); }
+    .g-cer { background: linear-gradient(135deg, #0a4770 0%, #0b83b8 100%); }
+    .g-orange { background: linear-gradient(135deg, #8a3a08 0%, #c2620c 100%); }
+    .g-pink { background: linear-gradient(135deg, #7d1a55 0%, #cc3a86 100%); }
+    .g-slate { background: linear-gradient(135deg, #23272a 0%, #2c2f33 100%); }
+    .g-teal { background: linear-gradient(135deg, #0b4d55 0%, #12857f 100%); }
+    .g-navy { background: linear-gradient(135deg, #1b1e6b 0%, #2b2f9e 100%); }
 
-    /* ABOUT SECTION */
-    .about-layout { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 64px; }
-    .about-bio p { font-size: 1.05rem; font-weight: 300; color: var(--text-muted); line-height: 1.8; margin-bottom: 24px; }
-    .about-bio p strong { color: var(--text); font-weight: 600; }
-    
-    .tags-container { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 32px; }
-    .tag-chip {
-      font-family: 'Space Mono', monospace; font-size: 0.68rem;
-      padding: 6px 14px; background: var(--surface); border: 1px solid var(--surface-border);
-      color: var(--text-muted); border-radius: 4px;
-    }
+    .chip { display: inline-block; padding: 6px 14px; border-radius: var(--radius-pill); background: rgba(0,0,0,.28); color: var(--color-snow); font-size: .82rem; font-weight: 500; letter-spacing: .016em; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
 
-    .info-table { border-top: 1px solid var(--surface-border); }
-    .info-row { display: flex; justify-content: space-between; padding: 16px 0; border-bottom: 1px solid var(--surface-border); font-size: 0.88rem; }
-    .info-label { font-family: 'Space Mono', monospace; color: var(--text-muted); font-size: 0.72rem; text-transform: uppercase; }
-    .info-val { font-weight: 600; color: var(--text); }
-    .info-val.highlight { color: var(--accent); }
+    /* ABOUT */
+    .about-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 56px; align-items: start; }
+    .about-grid p { font-size: 1.02rem; line-height: 1.6; margin-bottom: 18px; max-width: 62ch; }
+    .about-grid .chips { margin-top: 24px; }
+    .facts { display: grid; gap: 0; }
+    .fact { display: flex; justify-content: space-between; gap: 16px; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,.22); font-size: .95rem; }
+    .fact:first-child { border-top: 1px solid rgba(255,255,255,.22); }
+    .fact span:first-child { color: rgba(255,255,255,.72); }
+    .fact span:last-child { color: var(--color-snow); font-weight: 600; text-align: right; }
 
-    /* SKILLS - LISTA TÉCNICA */
-    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
-    .skill-card {
-      background: var(--surface); border: 1px solid var(--surface-border);
-      padding: 32px; border-radius: 8px; transition: border-color 0.2s;
-    }
-    .skill-card:hover { border-color: var(--accent); }
-    .skill-index { font-family: 'Space Mono', monospace; font-size: 0.75rem; color: var(--accent); margin-bottom: 16px; }
-    .skill-title { font-size: 1rem; font-weight: 700; text-transform: uppercase; margin-bottom: 16px; letter-spacing: -0.01em; }
-    .pill-group { display: flex; flex-wrap: wrap; gap: 6px; }
-    .pill-item {
-      font-family: 'Space Mono', monospace; font-size: 0.65rem;
-      padding: 4px 10px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
-      color: #a1a1aa; border-radius: 3px;
-    }
+    /* STACK */
+    .stack-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .stack-card { border-radius: var(--radius-card); padding: 32px; color: var(--color-snow); }
+    .stack-card h3 { font-size: 1.15rem; margin-bottom: 20px; }
 
-    /* PROYECTOS - LISTA EDITORIAL AMPLIABLE */
-    .projects-list { display: flex; flex-direction: column; gap: 24px; }
-    .project-item {
-      background: var(--surface); border: 1px solid var(--surface-border);
-      padding: 40px; border-radius: 8px; display: grid; grid-template-columns: 1fr 180px;
-      gap: 32px; align-items: center; transition: all 0.3s;
-    }
-    .project-item:hover { border-color: var(--accent); transform: translateX(6px); }
-    .proj-type { font-family: 'Space Mono', monospace; font-size: 0.68rem; color: var(--accent); text-transform: uppercase; margin-bottom: 8px; }
-    .proj-name { font-size: 1.8rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 12px; }
-    .proj-desc { font-size: 0.92rem; color: var(--text-muted); font-weight: 300; line-height: 1.7; margin-bottom: 20px; }
-    .proj-techs { display: flex; flex-wrap: wrap; gap: 6px; }
-    .proj-tech { font-family: 'Space Mono', monospace; font-size: 0.62rem; padding: 3px 8px; background: rgba(255,59,0,0.08); border: 1px solid rgba(255,59,0,0.2); color: var(--accent); border-radius: 3px; }
-    .proj-action { text-align: right; }
-    .proj-link-btn {
-      display: inline-flex; align-items: center; justify-content: center;
-      width: 54px; height: 54px; border: 1px solid var(--surface-border);
-      border-radius: 50%; color: var(--text); text-decoration: none; font-size: 1.2rem;
-      transition: all 0.2s;
-    }
-    .project-item:hover .proj-link-btn { background: var(--accent); border-color: var(--accent); color: #fff; }
+    /* EXPERIENCIA */
+    .xp-list { display: grid; gap: 20px; }
+    .xp { display: grid; grid-template-columns: 210px 1fr; gap: 40px; padding: 40px; }
+    .xp-date { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: 1.25rem; line-height: 1.1; letter-spacing: -0.01em; color: var(--color-snow); }
+    .xp-tag { display: block; margin-top: 10px; font-family: var(--font-body); font-weight: 500; text-transform: none; font-size: .88rem; color: rgba(255,255,255,.75); letter-spacing: .016em; }
+    .xp h3 { font-size: 1.4rem; margin-bottom: 4px; }
+    .xp-org { font-size: .95rem; color: rgba(255,255,255,.8); margin-bottom: 18px; }
+    .xp ul { list-style: none; display: grid; gap: 10px; }
+    .xp li { position: relative; padding-left: 20px; font-size: .96rem; line-height: 1.5; }
+    .xp li::before { content: ''; position: absolute; left: 0; top: .62em; width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.7); }
+
+    /* PROYECTOS */
+    .proj-list { display: grid; gap: 28px; }
+    .proj { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; overflow: visible; }
+    .proj.rev .proj-copy { order: 2; }
+    .proj-kind { display: inline-block; font-size: .85rem; font-weight: 600; color: rgba(255,255,255,.8); margin-bottom: 14px; }
+    .proj h3 { font-size: clamp(1.8rem, 3.4vw, 2.6rem); line-height: .95; margin-bottom: 16px; }
+    .proj-copy p { line-height: 1.6; margin-bottom: 22px; max-width: 46ch; }
+    .proj-copy .chips { margin-bottom: 28px; }
+    .proj-links { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    /* Marco de navegador / teléfono */
+    .frame { background: var(--surface-app); border-radius: var(--radius-card); overflow: hidden; }
+    .frame-bar { background: var(--surface-chrome); padding: 10px 14px; display: flex; align-items: center; gap: 12px; }
+    .frame-dots { display: flex; gap: 6px; }
+    .frame-dots i { width: 10px; height: 10px; border-radius: 50%; background: var(--color-dim-grey); display: block; }
+    .frame-url { flex: 1; font-size: .78rem; color: var(--color-greyple); background: rgba(0,0,0,.28); padding: 4px 12px; border-radius: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .frame-body { padding: 20px; display: grid; gap: 10px; }
+    .row { display: flex; align-items: center; gap: 12px; padding: 12px 14px; background: var(--surface-chrome); border-radius: 10px; font-size: .88rem; color: #dcdeef; }
+    .steps { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; padding: 4px 0 8px; }
+    .steps i { height: 8px; border-radius: 4px; background: var(--color-dim-grey); display: block; }
+    .steps i.on { background: var(--color-spring-green); }
+    .steps-label { font-size: .8rem; color: var(--color-greyple); }
+
+    .phone { width: min(280px, 100%); margin: 0 auto; background: var(--surface-app); border-radius: 36px; border: 8px solid var(--surface-chrome); padding: 22px 16px 24px; display: grid; gap: 12px; }
+    .phone-title { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: 1rem; color: var(--color-snow); letter-spacing: -0.01em; }
+    .metric { background: var(--surface-chrome); border-radius: 12px; padding: 12px 14px; }
+    .metric-top { display: flex; justify-content: space-between; font-size: .82rem; color: #dcdeef; margin-bottom: 8px; }
+    .bar { height: 8px; border-radius: 4px; background: var(--color-dim-grey); overflow: hidden; }
+    .bar i { display: block; height: 100%; border-radius: 4px; }
+
+    /* CERTIFICACIONES */
+    .scrum { display: grid; grid-template-columns: auto 1fr; gap: 40px; align-items: center; margin-bottom: 20px; }
+    .scrum-badge { width: 132px; height: 132px; border-radius: 50%; background: var(--color-snow); display: grid; place-items: center; text-align: center; color: var(--color-not-quite-black); font-family: var(--font-display); font-weight: 800; line-height: 1; }
+    .scrum-badge b { display: block; font-size: 2.2rem; color: #0b6b45; letter-spacing: -0.01em; }
+    .scrum-badge small { display: block; font-size: .62rem; text-transform: uppercase; margin-top: 6px; letter-spacing: 0; }
+    .scrum h3 { font-size: clamp(1.7rem, 3.2vw, 2.4rem); margin-bottom: 12px; }
+    .scrum p { max-width: 58ch; margin-bottom: 20px; line-height: 1.55; }
+    .cert-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .cert { border-radius: var(--radius-card); padding: 24px; }
+    .cert-year { font-family: var(--font-display); font-weight: 800; font-size: .9rem; color: var(--color-snow); margin-bottom: 10px; }
+    .cert h3 { font-size: 1rem; line-height: 1.2; margin-bottom: 8px; }
+    .cert p { font-size: .88rem; color: var(--color-fog); }
 
     /* EDUCACIÓN */
-    .edu-list { display: flex; flex-direction: column; gap: 20px; }
-    .edu-card { background: var(--surface); border: 1px solid var(--surface-border); padding: 32px; border-radius: 8px; }
-    .edu-year { font-family: 'Space Mono', monospace; font-size: 0.8rem; color: var(--accent); font-weight: 700; margin-bottom: 8px; }
-    .edu-degree { font-size: 1.2rem; font-weight: 700; text-transform: uppercase; margin-bottom: 4px; }
-    .edu-school { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px; }
-    .edu-desc { font-size: 0.88rem; color: #a1a1aa; font-weight: 300; }
+    .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .edu { padding: 40px; }
+    .edu-year { font-family: var(--font-display); font-weight: 800; font-size: 1rem; margin-bottom: 14px; color: var(--color-snow); }
+    .edu h3 { font-size: 1.35rem; margin-bottom: 8px; }
+    .edu .school { margin-bottom: 14px; color: rgba(255,255,255,.85); font-weight: 500; }
+    .edu p.d { font-size: .95rem; line-height: 1.55; }
 
-    /* CONTACTO & WHATSAPP */
-    .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
-    .contact-big-text { font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 800; line-height: 1; letter-spacing: -0.03em; margin-bottom: 24px; }
-    .contact-big-text span { color: var(--accent); }
-    .contact-sub { font-size: 1rem; color: var(--text-muted); font-weight: 300; margin-bottom: 32px; line-height: 1.7; }
-    
-    .contact-box { display: flex; flex-direction: column; gap: 12px; }
-    .contact-link-row {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 18px 24px; background: var(--surface); border: 1px solid var(--surface-border);
-      border-radius: 6px; text-decoration: none; color: var(--text); font-family: 'Space Mono', monospace;
-      font-size: 0.82rem; transition: border-color 0.2s;
-    }
-    .contact-link-row:hover { border-color: var(--accent); }
-
-    .wa-card {
-      background: rgba(37, 211, 102, 0.05); border: 1px solid rgba(37, 211, 102, 0.2);
-      padding: 32px; border-radius: 8px; display: flex; flex-direction: column; gap: 16px;
-    }
-    .wa-title { font-size: 1.1rem; font-weight: 700; color: #4ddb7a; }
-    .wa-desc { font-size: 0.85rem; color: var(--text-muted); }
-    .wa-action-btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-      background: #25d366; color: #000; padding: 14px 24px; border-radius: 6px;
-      font-family: 'Space Mono', monospace; font-size: 0.75rem; font-weight: 700;
-      text-decoration: none; transition: opacity 0.2s;
-    }
-    .wa-action-btn:hover { opacity: 0.9; }
+    /* CONTACTO */
+    .contact { display: grid; grid-template-columns: 1.1fr .9fr; gap: 56px; align-items: center; }
+    .contact h2 { font-size: clamp(2.2rem, 5.2vw, 3.6rem); line-height: .9; margin-bottom: 22px; }
+    .contact .lead { color: rgba(255,255,255,.9); margin-bottom: 30px; max-width: 46ch; }
+    .contact-links { display: grid; gap: 10px; }
+    .c-row { display: flex; justify-content: space-between; gap: 16px; padding: 16px 20px; border-radius: var(--radius-button); background: rgba(0,0,0,.28); text-decoration: none; color: var(--color-snow); font-size: .95rem; transition: background-color .2s; }
+    .c-row:hover { background: rgba(0,0,0,.42); }
+    .c-row span:first-child { color: rgba(255,255,255,.72); }
+    .wa { background: var(--surface-chrome); border-radius: var(--radius-card); padding: 32px; display: grid; gap: 16px; }
+    .wa h3 { font-size: 1.3rem; }
+    .wa p { color: var(--color-fog); line-height: 1.55; }
+    .btn-wa { background: var(--color-spring-green); color: #08341d; padding: 15px 24px; font-weight: 600; }
+    .btn-wa:hover { background: #7ff7a6; }
 
     /* FOOTER */
-    footer { padding: 32px 48px; display: flex; justify-content: space-between; align-items: center; font-family: 'Space Mono', monospace; font-size: 0.7rem; color: var(--text-muted); }
-    footer a { color: var(--text-muted); text-decoration: none; }
-    footer a:hover { color: var(--accent); }
+    footer { background: var(--surface-chrome); padding: 64px 0 32px; margin-top: 40px; }
+    .foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 32px; margin-bottom: 48px; }
+    .foot-brand { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: 1.1rem; color: var(--color-snow); letter-spacing: -0.01em; margin-bottom: 10px; }
+    .foot-note { font-size: .9rem; max-width: 30ch; }
+    footer h4 { font-family: var(--font-body); font-weight: 500; font-size: 1rem; color: var(--color-snow); letter-spacing: 0.013em; margin-bottom: 14px; }
+    footer ul { list-style: none; display: grid; gap: 8px; }
+    footer li a { color: var(--color-fog); text-decoration: none; font-size: 1rem; }
+    footer li a:hover { color: var(--color-snow); }
+    .foot-bottom { font-size: .85rem; color: var(--color-greyple); }
 
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
-      .cursor-dot { display: none; }
-      nav { padding: 18px 24px; }
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 1000px) {
       .nav-menu { display: none; }
-      #hero { padding: 120px 24px 60px; }
-      section { padding: 80px 24px; }
-      .about-layout, .contact-layout, .project-item { grid-template-columns: 1fr; gap: 32px; }
-      .proj-action { text-align: left; }
-      footer { flex-direction: column; gap: 16px; text-align: center; }
+      .hero-grid, .about-grid, .proj, .contact, .edu-grid { grid-template-columns: 1fr; }
+      .proj.rev .proj-copy { order: 0; }
+      .stack-grid, .cert-grid { grid-template-columns: repeat(2, 1fr); }
+      .xp { grid-template-columns: 1fr; gap: 16px; }
+      .foot-grid { grid-template-columns: 1fr 1fr; }
+      .hero-stage { padding-left: 0; }
+    }
+    @media (max-width: 640px) {
+      .wrap { padding: 0 16px; }
+      #hero { padding: 120px 0 64px; }
+      section.block { padding: 64px 0; }
+      .card { padding: 28px; }
+      .xp, .edu { padding: 28px; }
+      .stack-grid, .cert-grid { grid-template-columns: 1fr; }
+      .chat-window { grid-template-columns: 1fr; }
+      .chat-side { display: none; }
+      .scrum { grid-template-columns: 1fr; gap: 24px; }
+      .nav-brand { font-size: .9rem; }
+      .btn-login { display: none; }
+      .prop.p1 { font-size: 3.6rem; right: -6px; }
+      .prop.p3 { display: none; }
+      .foot-grid { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .msg { animation: none; opacity: 1; }
     }
   </style>
 </head>
 <body>
 
-  <div class="cursor-dot" id="cursor"></div>
-
   <!-- NAV -->
   <nav>
-    <a href="#" class="nav-brand">JENIFER REYES<span>.</span></a>
-    <ul class="nav-menu">
-      <li><a href="#about"><span class="t" data-es="Sobre mí" data-en="About"></span></a></li>
-      <li><a href="#skills"><span class="t" data-es="Habilidades" data-en="Skills"></span></a></li>
-      <li><a href="#education"><span class="t" data-es="Educación" data-en="Education"></span></a></li>
-      <li><a href="#projects"><span class="t" data-es="Proyectos" data-en="Projects"></span></a></li>
-      <li><a href="#contact"><span class="t" data-es="Contacto" data-en="Contact"></span></a></li>
-    </ul>
-    <div class="lang-switch">
-      <button class="lang-btn" id="btnEs" onclick="setLang('es')">ES</button>
-      <button class="lang-btn" id="btnEn" onclick="setLang('en')">EN</button>
+    <div class="wrap nav-inner">
+      <a href="#hero" class="nav-brand">Jenifer Reyes</a>
+      <ul class="nav-menu">
+        <li><a href="#about"><span class="t" data-es="Sobre mí" data-en="About"></span></a></li>
+        <li><a href="#stack"><span class="t" data-es="Stack" data-en="Stack"></span></a></li>
+        <li><a href="#experience"><span class="t" data-es="Experiencia" data-en="Experience"></span></a></li>
+        <li><a href="#projects"><span class="t" data-es="Proyectos" data-en="Projects"></span></a></li>
+        <li><a href="#certs"><span class="t" data-es="Certificaciones" data-en="Certifications"></span></a></li>
+        <li><a href="#education"><span class="t" data-es="Educación" data-en="Education"></span></a></li>
+      </ul>
+      <div class="nav-right">
+        <div class="lang-switch" role="group" aria-label="Idioma / Language">
+          <button class="lang-btn" id="btnEs" type="button" aria-pressed="true" onclick="setLang('es')">ES</button>
+          <button class="lang-btn" id="btnEn" type="button" aria-pressed="false" onclick="setLang('en')">EN</button>
+        </div>
+        <a href="#contact" class="btn btn-login"><span class="t" data-es="Contactar" data-en="Contact"></span></a>
+      </div>
     </div>
   </nav>
 
+  <main>
+
   <!-- HERO -->
   <section id="hero">
-    <div>
-      <span class="hero-top-tag t" data-es="// Ingeniera de Sistemas — Full Stack" data-en="// Systems Engineer — Full Stack"></span>
-      <h1 class="hero-title">
-        JENIFER<br><span class="outline">REYES</span> PÉREZ
-      </h1>
-      <p class="hero-desc t"
-        data-es="Desarrollo aplicaciones web robustas desde el backend hasta el servidor. Código limpio, bases de datos optimizadas e infraestructura en producción real."
-        data-en="Developing robust web applications from backend to deployment. Clean code, optimized databases, and live production infrastructure.">
-      </p>
-    </div>
-
-    <div class="hero-footer">
-      <a href="#projects" class="btn-editorial"><span class="t" data-es="Explorar Proyectos →" data-en="Explore Projects →"></span></a>
-      <div class="hero-meta">
-        <div>
-          <div class="meta-num">2+</div>
-          <div class="meta-lbl t" data-es="Años exp." data-en="Years exp."></div>
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <h1 class="t" data-es="Full Stack que vive en producción" data-en="Full Stack that lives in production"></h1>
+        <p class="lead t"
+           data-es="Soy <strong>Jenifer Reyes Pérez</strong>, ingeniera de sistemas. Diseño, construyo y despliego aplicaciones web y móviles para clientes reales: React, Node.js, PostgreSQL y servidores configurados desde cero."
+           data-en="I'm <strong>Jenifer Reyes Pérez</strong>, a systems engineer. I design, build and deploy web and mobile apps for real clients: React, Node.js, PostgreSQL and servers configured from scratch."></p>
+        <div class="cta-row">
+          <a href="#contact" class="btn btn-secondary"><span class="t" data-es="Hablemos" data-en="Let's talk"></span></a>
+          <a href="#projects" class="btn btn-primary"><span class="t" data-es="Ver proyectos" data-en="See projects"></span></a>
         </div>
-        <div>
-          <div class="meta-num">3</div>
-          <div class="meta-lbl t" data-es="Proyectos Live" data-en="Live Projects"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="sec-header">
-      <div class="sec-num">01 /</div>
-      <h2 class="sec-title"><span class="t" data-es="PERFIL Y PERFIL TÉCNICO" data-en="PROFILE & TECHNICAL PROFILE"></span></h2>
-    </div>
-    <div class="about-layout">
-      <div class="about-bio">
-        <p class="t"
-          data-es="Soy <strong>Ingeniera de Sistemas</strong> y desarrolladora full stack radicada en Santiago de los Caballeros, República Dominicana (24 años). Mi enfoque está en construir productos digitales completos que funcionen en producción real — no solo maquetas o prototipos."
-          data-en="I am a <strong>Systems Engineer</strong> and full-stack developer based in Santiago, Dominican Republic (24 yo). My focus is on building complete digital products that run in live production — not just mockups."></p>
-        <p class="t"
-          data-es="He diseñado y desplegado plataformas e-commerce completas con procesamiento de pagos reales, pasarelas de email automatizadas y servidores Ubuntu configurados con Nginx y PM2 desde cero."
-          data-en="I have built and deployed complete e-commerce platforms featuring real payment processing, automated transactional emails, and Ubuntu servers configured with Nginx and PM2 from scratch."></p>
-        <div class="tags-container">
-          <span class="tag-chip t" data-es="fitness" data-en="fitness"></span>
-          <span class="tag-chip t" data-es="autos" data-en="cars"></span>
-          <span class="tag-chip t" data-es="resolvedora" data-en="problem solver"></span>
-          <span class="tag-chip t" data-es="autodidacta" data-en="self-taught"></span>
-          <span class="tag-chip t" data-es="trabajo remoto" data-en="remote work"></span>
+        <div class="status-row">
+          <span class="status-chip"><span class="dot"></span><span class="t" data-es="Disponible de inmediato" data-en="Available now"></span></span>
+          <span class="status-chip"><span class="dot cer"></span><span class="t" data-es="Remoto / Híbrido" data-en="Remote / Hybrid"></span></span>
+          <span class="status-chip"><span class="dot ora"></span><span>Scrum SFC™</span></span>
         </div>
       </div>
 
-      <div class="info-table">
-        <div class="info-row"><span class="info-label t" data-es="Nombre" data-en="Name"></span><span class="info-val">Jenifer Reyes Pérez</span></div>
-        <div class="info-row"><span class="info-label t" data-es="Edad" data-en="Age"></span><span class="info-val highlight">24</span></div>
-        <div class="info-row"><span class="info-label t" data-es="Ubicación" data-en="Location"></span><span class="info-val">Santiago, Rep. Dom.</span></div>
-        <div class="info-row"><span class="info-label t" data-es="Título" data-en="Degree"></span><span class="info-val t" data-es="Ing. Sistemas (O&M)" data-en="B.S. Systems Eng."></span></div>
-        <div class="info-row"><span class="info-label t" data-es="Disponibilidad" data-en="Status"></span><span class="info-val highlight t" data-es="Inmediata" data-en="Immediate"></span></div>
-        <div class="info-row"><span class="info-label t" data-es="Modalidad" data-en="Work type"></span><span class="info-val">Remote / Hybrid</span></div>
-        <div class="info-row"><span class="info-label t" data-es="Inglés" data-en="English"></span><span class="info-val t" data-es="Intermedio" data-en="Intermediate"></span></div>
-      </div>
-    </div>
-  </section>
-
- <!-- SKILLS (COMPLETO 100%) -->
-  <section id="skills">
-    <div class="sec-header">
-      <div class="sec-num">02 /</div>
-      <h2 class="sec-title"><span class="t" data-es="CAPACIDADES TÉCNICAS" data-en="TECHNICAL CAPABILITIES"></span></h2>
-    </div>
-    <div class="skills-grid">
-      
-      <!-- 01 FRONTEND -->
-      <div class="skill-card">
-        <div class="skill-index">01.</div>
-        <div class="skill-title">Frontend</div>
-        <div class="pill-group">
-          <span class="pill-item">React.js</span>
-          <span class="pill-item">JavaScript</span>
-          <span class="pill-item">HTML5</span>
-          <span class="pill-item">CSS3</span>
-          <span class="pill-item">React Router</span>
-          <span class="pill-item">Responsive</span>
-          <span class="pill-item">Figma</span>
-        </div>
-      </div>
-
-      <!-- 02 BACKEND -->
-      <div class="skill-card">
-        <div class="skill-index">02.</div>
-        <div class="skill-title">Backend</div>
-        <div class="pill-group">
-          <span class="pill-item">Node.js</span>
-          <span class="pill-item">Express.js</span>
-          <span class="pill-item">PostgreSQL</span>
-          <span class="pill-item">REST APIs</span>
-          <span class="pill-item">jsPDF</span>
-          <span class="pill-item">Resend API</span>
-        </div>
-      </div>
-
-      <!-- 03 DEVOPS & DEPLOY -->
-      <div class="skill-card">
-        <div class="skill-index">03.</div>
-        <div class="skill-title">DevOps & Deploy</div>
-        <div class="pill-group">
-          <span class="pill-item">Ubuntu Linux</span>
-          <span class="pill-item">Nginx</span>
-          <span class="pill-item">PM2</span>
-          <span class="pill-item">SSL/Certbot</span>
-          <span class="pill-item">Vercel</span>
-          <span class="pill-item">Cloudflare DNS</span>
-          <span class="pill-item">GoDaddy DNS</span>
-        </div>
-      </div>
-
-      <!-- 04 INTEGRACIONES -->
-      <div class="skill-card">
-        <div class="skill-index">04.</div>
-        <div class="skill-title"><span class="t" data-es="Integraciones" data-en="Integrations"></span></div>
-        <div class="pill-group">
-          <span class="pill-item">PayPal Live</span>
-          <span class="pill-item">Resend</span>
-          <span class="pill-item">Cloudinary</span>
-          <span class="pill-item">Elfsight</span>
-          <span class="pill-item">Google Search Console</span>
-        </div>
-      </div>
-
-      <!-- 05 HERRAMIENTAS -->
-      <div class="skill-card">
-        <div class="skill-index">05.</div>
-        <div class="skill-title"><span class="t" data-es="Herramientas" data-en="Tools"></span></div>
-        <div class="pill-group">
-          <span class="pill-item">Git</span>
-          <span class="pill-item">GitHub</span>
-          <span class="pill-item">VS Code</span>
-          <span class="pill-item">Postman</span>
-          <span class="pill-item">AWS CDK</span>
-        </div>
-      </div>
-
-      <!-- 06 CERTIFICACIONES -->
-      <div class="skill-card">
-        <div class="skill-index">06.</div>
-        <div class="skill-title"><span class="t" data-es="Certificaciones" data-en="Certifications"></span></div>
-        <div class="pill-group">
-          <span class="pill-item">freeCodeCamp — JavaScript Algorithms & Data Structures</span>
-          <span class="pill-item">freeCodeCamp — Responsive Web Design</span>
-          <span class="pill-item">freeCodeCamp — Python</span>
-          <span class="pill-item">freeCodeCamp — Relational Database</span>
-          <span class="pill-item">AWS CDK — Getting Started</span>
-          <span class="pill-item">Cisco — Basic Network</span>
-          <span class="pill-item">Ciberseguridad — Talento Digital</span>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- EDUCATION -->
-  <section id="education">
-    <div class="sec-header">
-      <div class="sec-num">03 /</div>
-      <h2 class="sec-title"><span class="t" data-es="FORMACIÓN ACADÉMICA" data-en="ACADEMIC BACKGROUND"></span></h2>
-    </div>
-    <div class="edu-list">
-      <div class="edu-card">
-        <div class="edu-year">2025</div>
-        <div class="edu-degree t" data-es="Ingeniería de Sistemas y Computación" data-en="B.S. Systems & Computer Engineering"></div>
-        <div class="edu-school">Universidad Dominicana O&M</div>
-        <p class="edu-desc t"
-          data-es="Graduada en noviembre de 2025. Especialización en desarrollo de software, arquitectura de sistemas, bases de datos relacionales y redes informáticas."
-          data-en="Graduated November 2025. Specialized in software development, systems architecture, relational databases, and computer networks."></p>
-      </div>
-
-      <div class="edu-card">
-        <div class="edu-year">2020</div>
-        <div class="edu-degree t" data-es="Bachiller Técnico en Desarrollo de Aplicaciones" data-en="Technical Degree in Software Development"></div>
-        <div class="edu-school">Politécnico Salesiano Arquides Calderón — Moca</div>
-        <p class="edu-desc t"
-          data-es="Formación técnica sólida en lógica de programación, administración de sistemas informáticos y fundamentos de desarrollo web."
-          data-en="Solid technical foundation in programming logic, computer systems administration, and web development fundamentals."></p>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section id="projects">
-    <div class="sec-header">
-      <div class="sec-num">04 /</div>
-      <h2 class="sec-title"><span class="t" data-es="PROYECTOS DESPLEGADOS" data-en="DEPLOYED PROJECTS"></span></h2>
-    </div>
-    <div class="projects-list">
-      
-      <!-- PROYECTO 1 -->
-      <div class="project-item">
-        <div>
-          <div class="proj-type t" data-es="E-Commerce · Producción" data-en="E-Commerce · Production"></div>
-          <div class="proj-name">WOLFS FITNESS MARKET</div>
-          <p class="proj-desc t"
-            data-es="Plataforma de comercio electrónico para tienda de suplementos deportivos. Sistema de pagos PayPal Live en producción, generación de facturas y servidor Ubuntu configurado desde cero."
-            data-en="E-commerce platform for sports supplement retailer. PayPal Live payments in production, invoice generation, and Ubuntu server configured from scratch."></p>
-          <div class="proj-techs">
-            <span class="proj-tech">React.js</span><span class="proj-tech">Node.js</span>
-            <span class="proj-tech">PostgreSQL</span><span class="proj-tech">PayPal Live</span>
-            <span class="proj-tech">Nginx</span><span class="proj-tech">PM2</span>
+      <div class="hero-stage" aria-hidden="true">
+        <div class="chat-window">
+          <div class="chat-side">
+            <div class="chat-server">jenifer-portfolio</div>
+            <a class="chan" href="#about"># <span class="t" data-es="sobre-mi" data-en="about-me"></span></a>
+            <a class="chan" href="#stack"># stack</a>
+            <a class="chan on" href="#projects"># <span class="t" data-es="proyectos" data-en="projects"></span></a>
+            <a class="chan" href="#certs"># <span class="t" data-es="certificaciones" data-en="certifications"></span></a>
+            <a class="chan" href="#contact"># <span class="t" data-es="contacto" data-en="contact"></span></a>
+          </div>
+          <div class="chat-main">
+            <div class="chat-head"># <span class="t" data-es="proyectos" data-en="projects"></span> <span>&nbsp;·&nbsp;<span class="t" data-es="en producción" data-en="in production"></span></span></div>
+            <div class="chat-body">
+              <div class="msg">
+                <div class="avatar av-j">JR</div>
+                <div>
+                  <div class="msg-name">jenifer</div>
+                  <div class="msg-text t" data-es="Deploy de wolffitnessmarket.com listo." data-en="wolffitnessmarket.com deploy is live."></div>
+                </div>
+              </div>
+              <div class="msg">
+                <div class="avatar av-b">PM</div>
+                <div>
+                  <div class="msg-name">deploy-bot <span class="bot-tag">BOT</span></div>
+                  <div class="embed">
+                    <span><span class="ok">●</span> <b>PM2</b> online</span>
+                    <span><span class="ok">●</span> <b>Nginx</b> 200 OK</span>
+                    <span><span class="ok">●</span> <b>SSL</b> <span class="t" data-es="certificado válido" data-en="certificate valid"></span></span>
+                  </div>
+                </div>
+              </div>
+              <div class="msg">
+                <div class="avatar av-j">JR</div>
+                <div>
+                  <div class="msg-name">jenifer</div>
+                  <div class="msg-text t" data-es="Ahora: Vertical Slice + CQRS en .NET, con pruebas unitarias e integración." data-en="Now: Vertical Slice + CQRS in .NET, with unit and integration tests."></div>
+                </div>
+              </div>
+              <div class="msg">
+                <div class="avatar av-j">JR</div>
+                <div>
+                  <div class="msg-name">jenifer</div>
+                  <div class="msg-text t" data-es="Y acabo de certificarme en Scrum (SFC™)." data-en="And I just got certified in Scrum (SFC™)."></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="proj-action">
-          <a href="https://wolffitnessmarket.com" target="_blank" class="proj-link-btn">↗</a>
-        </div>
+        <span class="prop p1">🤖</span>
+        <span class="prop p2">💎</span>
+        <span class="prop p3">🍑</span>
       </div>
-
-      <!-- PROYECTO 2 -->
-      <div class="project-item">
-        <div>
-          <div class="proj-type t" data-es="Fintech · Producción" data-en="Fintech · Production"></div>
-          <div class="proj-name">JM ODEPEM FINANCIERA</div>
-          <p class="proj-desc t"
-            data-es="Sitio web institucional para entidad financiera. Incluye cotizador dinámico de préstamos, formulario de solicitud multi-paso con generación automática de PDF y catálogo vehicular."
-            data-en="Institutional website for a financial entity. Features dynamic loan calculator, multi-step application form with automated PDF generation, and vehicle catalog."></p>
-          <div class="proj-techs">
-            <span class="proj-tech">React.js</span><span class="proj-tech">Node.js</span>
-            <span class="proj-tech">Express</span><span class="proj-tech">jsPDF</span>
-            <span class="proj-tech">Resend API</span><span class="proj-tech">Nginx</span>
-          </div>
-        </div>
-        <div class="proj-action">
-          <a href="https://www.jmodepem.com" target="_blank" class="proj-link-btn">↗</a>
-        </div>
-      </div>
-
-      <!-- PROYECTO 3 -->
-      <div class="project-item">
-        <div>
-          <div class="proj-type t" data-es="Fitness Brand · Producción" data-en="Fitness Brand · Production"></div>
-          <div class="proj-name">RANGERR AESTHETIC</div>
-          <p class="proj-desc t"
-            data-es="Landing page de alto impacto visual para personal coaching con estética oscura Raw Nutrition. Integración oficial de API/Feed de Instagram y video hero."
-            data-en="High-impact landing page for personal coaching with dark Raw Nutrition aesthetic. Official Instagram API/Feed integration and background video hero."></p>
-          <div class="proj-techs">
-            <span class="proj-tech">HTML5</span><span class="proj-tech">CSS3</span>
-            <span class="proj-tech">JavaScript</span><span class="proj-tech">Vite</span>
-            <span class="proj-tech">Elfsight API</span>
-          </div>
-        </div>
-        <div class="proj-action">
-          <a href="https://jcrangerr.netlify.app/" target="_blank" class="proj-link-btn">↗</a>
-        </div>
-      </div>
-
     </div>
   </section>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="sec-header">
-      <div class="sec-num">05 /</div>
-      <h2 class="sec-title"><span class="t" data-es="CONTACTO DIRECTO" data-en="DIRECT CONTACT"></span></h2>
-    </div>
-    <div class="contact-layout">
-      <div>
-        <div class="contact-big-text">
-          <span class="t" data-es="¿TIENES UN<br>PROYECTO EN<br><span>MENTE?</span>" data-en="HAVE A<br>PROJECT IN<br><span>MIND?</span>"></span>
-        </div>
-        <p class="contact-sub t"
-          data-es="Disponible para oportunidades de desarrollo Full Stack a tiempo completo, proyectos freelance o contratos remotos."
-          data-en="Available for full-time Full Stack development opportunities, freelance projects, or remote contracts."></p>
-        
-        <div class="contact-box">
-          <a href="mailto:jeniferreyesperez@gmail.com" class="contact-link-row">
-            <span>Email</span>
-            <span>jeniferreyesperez@gmail.com ↗</span>
-          </a>
-          <a href="tel:+18296474052" class="contact-link-row">
-            <span>Teléfono</span>
-            <span>829-647-4052 ↗</span>
-          </a>
-          <a href="https://linkedin.com/in/jenifer-reyes-perez-9613a1399" target="_blank" class="contact-link-row">
-            <span>LinkedIn</span>
-            <span>in/jenifer-reyes-perez ↗</span>
-          </a>
-        </div>
+  <!-- SOBRE MÍ -->
+  <section id="about" class="block">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="t" data-es="Sobre mí" data-en="About me"></h2>
       </div>
-
-      <div style="display: flex; align-items: center;">
-        <div class="wa-card" style="width: 100%;">
-          <div class="wa-title t" data-es="Mensaje Directo por WhatsApp" data-en="Direct WhatsApp Message"></div>
-          <p class="wa-desc t"
-            data-es="Si prefieres una respuesta rápida para discutir una vacante o proyecto, puedes escribir directamente a mi número personal."
-            data-en="If you prefer a fast response regarding a job opportunity or project, feel free to text my personal line."></p>
-          <a href="https://wa.me/18296474052?text=Hola%20Jenifer%2C%20vi%20tu%20portfolio%20y%20me%20interesa%20contactarte." target="_blank" class="wa-action-btn">
-            <span class="t" data-es="Abrir Chat de WhatsApp (829-647-4052)" data-en="Open WhatsApp Chat (829-647-4052)"></span>
-          </a>
+      <div class="card g-purple">
+        <div class="about-grid">
+          <div>
+            <p class="t"
+               data-es="Soy <strong>Ingeniera de Sistemas</strong> y desarrolladora Full Stack en Santiago de los Caballeros, República Dominicana. Diseño, desarrollo y despliego aplicaciones web y móviles escalables para clientes reales, con arquitectura limpia (CQRS / Vertical Slice), pruebas unitarias y de integración, contenedores con Docker y administración de servidores VPS con Ubuntu, Nginx y PM2."
+               data-en="I'm a <strong>Systems Engineer</strong> and Full Stack developer based in Santiago de los Caballeros, Dominican Republic. I design, build and deploy scalable web and mobile applications for real clients, with clean architecture (CQRS / Vertical Slice), unit and integration testing, Docker containers and VPS administration on Ubuntu, Nginx and PM2."></p>
+            <p class="t"
+               data-es="Me importan el código limpio, el control de calidad y los productos de alto rendimiento. Ya integré pagos reales con PayPal Live, correos transaccionales con Resend y SSL en producción. En septiembre de 2026 me certifiqué como <strong>Scrum Fundamentals Certified (SFC™)</strong> para sumar método a mi forma de trabajar."
+               data-en="I care about clean code, quality control and high-performance products. I've already shipped real PayPal Live payments, transactional email with Resend and SSL in production. In September 2026 I earned the <strong>Scrum Fundamentals Certified (SFC™)</strong> credential to bring more method to how I work."></p>
+            <div class="chips">
+              <span class="chip t" data-es="fitness" data-en="fitness"></span>
+              <span class="chip t" data-es="autos" data-en="cars"></span>
+              <span class="chip t" data-es="resolvedora" data-en="problem solver"></span>
+              <span class="chip t" data-es="autodidacta" data-en="self-taught"></span>
+              <span class="chip t" data-es="trabajo remoto" data-en="remote work"></span>
+            </div>
+          </div>
+          <div class="facts">
+            <div class="fact"><span class="t" data-es="Nombre" data-en="Name"></span><span>Jenifer Reyes Pérez</span></div>
+            <div class="fact"><span class="t" data-es="Edad" data-en="Age"></span><span>24</span></div>
+            <div class="fact"><span class="t" data-es="Ubicación" data-en="Location"></span><span class="t" data-es="Santiago, Rep. Dom." data-en="Santiago, Dominican Rep."></span></div>
+            <div class="fact"><span class="t" data-es="Título" data-en="Degree"></span><span class="t" data-es="Ing. Sistemas y Computación" data-en="B.S. Systems & Computing Eng."></span></div>
+            <div class="fact"><span class="t" data-es="Disponibilidad" data-en="Availability"></span><span class="t" data-es="Inmediata" data-en="Immediate"></span></div>
+            <div class="fact"><span class="t" data-es="Modalidad" data-en="Work type"></span><span>Remote / Hybrid</span></div>
+            <div class="fact"><span class="t" data-es="Español" data-en="Spanish"></span><span class="t" data-es="Nativo" data-en="Native"></span></div>
+            <div class="fact"><span class="t" data-es="Inglés" data-en="English"></span><span>B1 <span class="t" data-es="Intermedio" data-en="Intermediate"></span></span></div>
+          </div>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- STACK -->
+  <section id="stack" class="block">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="t" data-es="Stack técnico" data-en="Technical stack"></h2>
+        <p class="lead t"
+           data-es="Lo que uso para llevar un producto de la idea al servidor."
+           data-en="What I use to take a product from idea to server."></p>
+      </div>
+      <div class="stack-grid">
+
+        <div class="stack-card g-cer">
+          <h3>Frontend &amp; UI/UX</h3>
+          <div class="chips">
+            <span class="chip">React.js</span><span class="chip">Vue.js</span><span class="chip">React Native</span>
+            <span class="chip">JavaScript ES6+</span><span class="chip">HTML5</span><span class="chip">CSS3</span>
+            <span class="chip">React Router</span><span class="chip">Responsive Design</span>
+            <span class="chip">Component Architecture</span><span class="chip">UI/UX</span><span class="chip">Figma</span>
+          </div>
+        </div>
+
+        <div class="stack-card g-green">
+          <h3 class="t" data-es="Backend y lenguajes" data-en="Backend &amp; languages"></h3>
+          <div class="chips">
+            <span class="chip">Python</span><span class="chip">Node.js</span><span class="chip">Express.js</span>
+            <span class="chip">C# .NET / ASP.NET Core</span><span class="chip">RESTful APIs</span>
+            <span class="chip">jsPDF</span><span class="chip">Resend API</span>
+          </div>
+        </div>
+
+        <div class="stack-card g-purple">
+          <h3 class="t" data-es="Arquitectura" data-en="Architecture"></h3>
+          <div class="chips">
+            <span class="chip">Vertical Slice Architecture</span><span class="chip">CQRS</span>
+            <span class="chip">MediatR</span><span class="chip">Entity Framework Core</span>
+            <span class="chip">Clean Architecture</span>
+          </div>
+        </div>
+
+        <div class="stack-card g-pink">
+          <h3 class="t" data-es="Calidad y metodología" data-en="Quality &amp; methodology"></h3>
+          <div class="chips">
+            <span class="chip">Unit Testing</span><span class="chip">Integration Testing</span>
+            <span class="chip">TDD</span><span class="chip">Debugging</span>
+            <span class="chip">Quality Control</span><span class="chip">Scrum (SFC™)</span>
+          </div>
+        </div>
+
+        <div class="stack-card g-orange">
+          <h3 class="t" data-es="Datos y DevOps" data-en="Data &amp; DevOps"></h3>
+          <div class="chips">
+            <span class="chip">PostgreSQL</span><span class="chip">SQL</span><span class="chip">Bash</span>
+            <span class="chip">Docker</span><span class="chip">Ubuntu VPS</span><span class="chip">Nginx</span>
+            <span class="chip">PM2</span><span class="chip">Certbot / SSL</span><span class="chip">Cloudflare</span>
+            <span class="chip">GoDaddy DNS</span><span class="chip">AWS CDK</span>
+          </div>
+        </div>
+
+        <div class="stack-card g-slate">
+          <h3 class="t" data-es="Herramientas e integraciones" data-en="Tools &amp; integrations"></h3>
+          <div class="chips">
+            <span class="chip">Git</span><span class="chip">GitHub</span><span class="chip">VS Code</span>
+            <span class="chip">Postman</span><span class="chip">GitHub Pages</span><span class="chip">Vercel</span>
+            <span class="chip">PayPal Live API</span><span class="chip">Cloudinary</span>
+            <span class="chip">Formspree</span><span class="chip">Elfsight</span>
+            <span class="chip">Google Search Console</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCIA -->
+  <section id="experience" class="block">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="t" data-es="Experiencia" data-en="Experience"></h2>
+        <p class="lead t"
+           data-es="Proyectos reales, con clientes reales y servidores que siguen encendidos."
+           data-en="Real projects, real clients, and servers that are still running."></p>
+      </div>
+      <div class="xp-list">
+
+        <article class="card xp g-teal">
+          <div class="xp-date"><span>2026</span><span class="xp-tag t" data-es="En desarrollo" data-en="In progress"></span></div>
+          <div>
+            <h3>Full Stack Developer</h3>
+            <p class="xp-org">Sosa-Frotman Inversiones · Moca, RD</p>
+            <ul>
+              <li class="t" data-es="Diseño y construcción de una plataforma SaaS para una financiera: frontend, backend en Python, APIs, autenticación y seguridad, DevOps y pruebas." data-en="Designing and building a SaaS platform for a finance company: frontend, Python backend, APIs, authentication and security, DevOps and testing."></li>
+              <li class="t" data-es="Sitio de 7 rutas con catálogo de 6 servicios (préstamos, hipotecas, financiamiento de vehículos y celulares, seguro vehicular, GPS y traspasos) y landings propias para seguro vehicular y GPS." data-en="7-route website with a 6-service catalog (loans, mortgages, vehicle and phone financing, vehicle insurance, GPS and transfers) and dedicated landing pages for vehicle insurance and GPS."></li>
+              <li class="t" data-es="Solicitud de crédito digital de 6 pasos, adaptada del formulario en papel de la financiera." data-en="6-step digital credit application, adapted from the company's paper form."></li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card xp g-cer">
+          <div class="xp-date"><span>2025 – 2026</span><span class="xp-tag">Freelance</span></div>
+          <div>
+            <h3>Full Stack Web Developer</h3>
+            <p class="xp-org">Financiera JM ODEPEM S.R.L. · jmodepem.com</p>
+            <ul>
+              <li class="t" data-es="Desarrollé una app web institucional multipágina en React.js, con UI/UX responsive y enrutamiento del lado del cliente." data-en="Built a multi-page institutional web app in React.js with responsive UI/UX and client-side routing."></li>
+              <li class="t" data-es="Construí y desplegué el backend Node.js/Express en un VPS de Hostinger con Nginx como proxy inverso y PM2, con servicios en Docker donde aplica." data-en="Built and deployed the Node.js/Express backend on a Hostinger VPS with Nginx reverse proxy and PM2, with Docker services where applicable."></li>
+              <li class="t" data-es="Configuré certificados SSL con Certbot y administré el DNS en GoDaddy y Cloudflare." data-en="Configured SSL certificates with Certbot and managed DNS on GoDaddy and Cloudflare."></li>
+              <li class="t" data-es="Desarrollé un formulario de solicitud de préstamo de 6 pasos que genera un PDF en base64 (jsPDF) y lo envía automáticamente con Resend API." data-en="Engineered a 6-step loan application form that generates a base64 PDF (jsPDF) and delivers it automatically through Resend API."></li>
+              <li class="t" data-es="Creé el portal subsidiario JM Inversiones con catálogo interactivo de 12 vehículos y formulario de financiamiento." data-en="Created the JM Inversiones subsidiary portal with an interactive 12-vehicle catalog and a financing form."></li>
+              <li class="t" data-es="Integré un widget de Instagram (Elfsight) y un cotizador de préstamos en tiempo real." data-en="Integrated an Instagram widget (Elfsight) and a real-time loan calculator."></li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card xp g-green">
+          <div class="xp-date"><span>2024 – 2025</span><span class="xp-tag">Freelance</span></div>
+          <div>
+            <h3>Full Stack Web Developer</h3>
+            <p class="xp-org">Wolfs Fitness Market · wolffitnessmarket.com</p>
+            <ul>
+              <li class="t" data-es="Desarrollé una plataforma e-commerce con frontend en React.js y API REST en Node.js/Express, con estándares de UI/UX responsive." data-en="Built an e-commerce platform with a React.js frontend and a Node.js/Express REST API, following responsive UI/UX standards."></li>
+              <li class="t" data-es="Integré la pasarela PayPal Live, facturación automática con Resend API y almacenamiento de medios en Cloudinary." data-en="Integrated the PayPal Live gateway, automated invoicing with Resend API and Cloudinary media storage."></li>
+              <li class="t" data-es="Desplegué y mantengo el sitio en un VPS Ubuntu 22.04 con Nginx, PM2 y SSL Certbot sobre Cloudflare." data-en="Deployed and maintain the site on an Ubuntu 22.04 VPS with Nginx, PM2 and Certbot SSL over Cloudflare."></li>
+              <li class="t" data-es="Implementé un panel de administración para inventario y pedidos, protocolos de prueba rigurosos y optimización SEO." data-en="Implemented an admin panel for inventory and orders, rigorous testing protocols and SEO optimization."></li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card xp g-pink">
+          <div class="xp-date"><span>Freelance</span></div>
+          <div>
+            <h3>Web Developer</h3>
+            <p class="xp-org">Rangerr Aesthetic · jcrangerr.netlify.app</p>
+            <ul>
+              <li class="t" data-es="Landing de alto impacto visual para coaching personal, con estética oscura estilo Raw Nutrition." data-en="High-impact landing page for personal coaching with a dark Raw Nutrition aesthetic."></li>
+              <li class="t" data-es="Integré el feed oficial de Instagram (Elfsight) y un video hero de fondo." data-en="Integrated the official Instagram feed (Elfsight) and a background hero video."></li>
+              <li class="t" data-es="Construida con HTML5, CSS3, JavaScript y Vite, y desplegada en Netlify." data-en="Built with HTML5, CSS3, JavaScript and Vite, and deployed on Netlify."></li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card xp g-navy">
+          <div class="xp-date"><span>2026</span><span class="xp-tag t" data-es="Independiente" data-en="Independent"></span></div>
+          <div>
+            <h3>Independent Web Developer &amp; Mobile Applications</h3>
+            <p class="xp-org t" data-es="Desarrollo de software y portafolio profesional" data-en="Software development &amp; professional portfolio"></p>
+            <ul>
+              <li class="t" data-es="<strong>FitTrack (app móvil):</strong> desarrollada en React Native, un panel de salud y rendimiento que calcula el gasto energético diario total (TDEE), calorías activas y macronutrientes, con UI/UX inspirada en Strava." data-en="<strong>FitTrack (mobile app):</strong> built with React Native, a health and athletic dashboard that tracks Total Daily Energy Expenditure (TDEE), active calories and macronutrients, with Strava-inspired UI/UX."></li>
+              <li class="t" data-es="<strong>APIs en Python y C# .NET:</strong> Web APIs con Vertical Slice Architecture, CQRS con MediatR y Entity Framework Core, respaldadas por pruebas unitarias y de integración." data-en="<strong>Python &amp; C# .NET backends:</strong> Web APIs using Vertical Slice Architecture, CQRS with MediatR and Entity Framework Core, backed by unit and integration tests."></li>
+              <li class="t" data-es="<strong>Portafolio y DevOps:</strong> portal personal desplegado en GitHub Pages, con soporte de Docker para entornos locales." data-en="<strong>Portfolio &amp; DevOps:</strong> personal portal deployed on GitHub Pages with Docker support for local environments."></li>
+              <li class="t" data-es="<strong>Bases de datos y automatización:</strong> diseño de bases relacionales en PostgreSQL con carga de datos automatizada mediante scripts Bash." data-en="<strong>Databases &amp; automation:</strong> relational database design in PostgreSQL with automated data loading through Bash scripts."></li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card xp g-slate">
+          <div class="xp-date"><span>2024 – 2026</span></div>
+          <div>
+            <h3 class="t" data-es="Asistente administrativa y soporte al cliente" data-en="Administrative Assistant &amp; Customer Support"></h3>
+            <p class="xp-org">Platinum Auto Care S.R.L. · KSA RG Promotora · CG Comunicaciones</p>
+            <ul>
+              <li class="t" data-es="Gestión administrativa, atención al cliente, manejo de herramientas digitales y relación con clientes." data-en="Administrative management, customer service, digital tools and customer relationship management."></li>
+              <li class="t" data-es="Soporte técnico IT (Racol Computers, 2019)." data-en="IT technical support (Racol Computers, 2019)."></li>
+            </ul>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROYECTOS -->
+  <section id="projects" class="block">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="t" data-es="Proyectos" data-en="Projects"></h2>
+        <p class="lead t"
+           data-es="Tres sitios en producción, una plataforma fintech y una app móvil en desarrollo."
+           data-en="Three sites in production, a fintech platform and a mobile app in progress."></p>
+      </div>
+      <div class="proj-list">
+
+        <!-- Wolfs -->
+        <article class="card proj g-green">
+          <div class="proj-copy">
+            <span class="proj-kind t" data-es="E-commerce · En producción" data-en="E-commerce · In production"></span>
+            <h3>Wolfs Fitness Market</h3>
+            <p class="t"
+               data-es="Tienda en línea de suplementos deportivos con pagos reales en PayPal Live, facturas automáticas por correo, panel de administración y un servidor Ubuntu configurado desde cero."
+               data-en="Online sports-supplement store with real PayPal Live payments, automatic email invoices, an admin panel and an Ubuntu server configured from scratch."></p>
+            <div class="chips">
+              <span class="chip">React.js</span><span class="chip">Node.js</span><span class="chip">PostgreSQL</span>
+              <span class="chip">PayPal Live</span><span class="chip">Cloudinary</span><span class="chip">Nginx</span><span class="chip">PM2</span>
+            </div>
+            <div class="proj-links">
+              <a class="btn btn-secondary" href="https://wolffitnessmarket.com" target="_blank" rel="noopener"><span class="t" data-es="Ver sitio en vivo" data-en="Visit live site"></span></a>
+            </div>
+          </div>
+          <div class="frame" aria-hidden="true">
+            <div class="frame-bar"><div class="frame-dots"><i></i><i></i><i></i></div><div class="frame-url">wolffitnessmarket.com</div></div>
+            <div class="frame-body">
+              <div class="row"><span class="dot"></span><span class="t" data-es="Pagos PayPal Live en producción" data-en="PayPal Live payments in production"></span></div>
+              <div class="row"><span class="dot cer"></span><span class="t" data-es="Facturas automáticas con Resend API" data-en="Automatic invoices via Resend API"></span></div>
+              <div class="row"><span class="dot ora"></span><span class="t" data-es="Panel de inventario y pedidos" data-en="Inventory and orders panel"></span></div>
+              <div class="row"><span class="dot"></span><span>Ubuntu 22.04 · Nginx · PM2 · SSL</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- JM ODEPEM -->
+        <article class="card proj rev g-cer">
+          <div class="proj-copy">
+            <span class="proj-kind t" data-es="Fintech · En producción" data-en="Fintech · In production"></span>
+            <h3>JM ODEPEM Financiera</h3>
+            <p class="t"
+               data-es="Sitio institucional para una financiera, con cotizador de préstamos en tiempo real, solicitud de 6 pasos que genera un PDF y lo envía por correo, y el portal JM Inversiones con catálogo de 12 vehículos."
+               data-en="Institutional website for a finance company with a real-time loan calculator, a 6-step application that generates a PDF and emails it, and the JM Inversiones portal with a 12-vehicle catalog."></p>
+            <div class="chips">
+              <span class="chip">React.js</span><span class="chip">Node.js</span><span class="chip">Express</span>
+              <span class="chip">jsPDF</span><span class="chip">Resend API</span><span class="chip">Docker</span><span class="chip">Nginx</span>
+            </div>
+            <div class="proj-links">
+              <a class="btn btn-secondary" href="https://www.jmodepem.com" target="_blank" rel="noopener"><span class="t" data-es="Ver sitio en vivo" data-en="Visit live site"></span></a>
+            </div>
+          </div>
+          <div class="frame" aria-hidden="true">
+            <div class="frame-bar"><div class="frame-dots"><i></i><i></i><i></i></div><div class="frame-url">jmodepem.com</div></div>
+            <div class="frame-body">
+              <div class="steps-label t" data-es="Solicitud de préstamo · paso 3 de 6" data-en="Loan application · step 3 of 6"></div>
+              <div class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div>
+              <div class="row"><span class="dot"></span><span class="t" data-es="Cotizador en tiempo real" data-en="Real-time loan calculator"></span></div>
+              <div class="row"><span class="dot cer"></span><span class="t" data-es="PDF base64 (jsPDF) enviado por Resend" data-en="Base64 PDF (jsPDF) sent via Resend"></span></div>
+              <div class="row"><span class="dot ora"></span><span class="t" data-es="JM Inversiones · catálogo de 12 vehículos" data-en="JM Inversiones · 12-vehicle catalog"></span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Sosa-Frotman -->
+        <article class="card proj g-teal">
+          <div class="proj-copy">
+            <span class="proj-kind t" data-es="Fintech · En desarrollo" data-en="Fintech · In progress"></span>
+            <h3>Sosa-Frotman Inversiones</h3>
+            <p class="t"
+               data-es="Plataforma web para una financiera en Moca: catálogo de servicios (préstamos, financiamiento de vehículos y celulares, seguro vehicular, GPS y traspasos) y una solicitud de crédito digital de 6 pasos. Backend en Python."
+               data-en="Web platform for a finance company in Moca: service catalog (loans, vehicle and phone financing, vehicle insurance, GPS and transfers) and a 6-step digital credit application. Python backend."></p>
+            <div class="chips">
+              <span class="chip">Python</span><span class="chip">APIs</span>
+              <span class="chip t" data-es="Auth y seguridad" data-en="Auth &amp; security"></span>
+              <span class="chip">DevOps</span><span class="chip">Testing</span>
+            </div>
+          </div>
+          <div class="frame" aria-hidden="true">
+            <div class="frame-bar"><div class="frame-dots"><i></i><i></i><i></i></div><div class="frame-url">Sosa-Frotman Inversiones</div></div>
+            <div class="frame-body">
+              <div class="steps-label t" data-es="Solicitud de crédito · paso 2 de 6" data-en="Credit application · step 2 of 6"></div>
+              <div class="steps"><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i></div>
+              <div class="row"><span class="dot"></span><span class="t" data-es="7 rutas · catálogo de 6 servicios" data-en="7 routes · 6-service catalog"></span></div>
+              <div class="row"><span class="dot cer"></span><span class="t" data-es="Landings: seguro vehicular y GPS" data-en="Landings: vehicle insurance and GPS"></span></div>
+              <div class="row"><span class="dot ora"></span><span class="t" data-es="Backend en Python" data-en="Python backend"></span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Rangerr -->
+        <article class="card proj rev g-pink">
+          <div class="proj-copy">
+            <span class="proj-kind t" data-es="Marca fitness · En producción" data-en="Fitness brand · In production"></span>
+            <h3>Rangerr Aesthetic</h3>
+            <p class="t"
+               data-es="Landing de alto impacto visual para coaching personal, con estética oscura estilo Raw Nutrition, video hero y feed oficial de Instagram integrado."
+               data-en="High-impact landing page for personal coaching with a dark Raw Nutrition aesthetic, a hero video and an official Instagram feed."></p>
+            <div class="chips">
+              <span class="chip">HTML5</span><span class="chip">CSS3</span><span class="chip">JavaScript</span>
+              <span class="chip">Vite</span><span class="chip">Elfsight</span>
+            </div>
+            <div class="proj-links">
+              <a class="btn btn-secondary" href="https://jcrangerr.netlify.app/" target="_blank" rel="noopener"><span class="t" data-es="Ver sitio en vivo" data-en="Visit live site"></span></a>
+            </div>
+          </div>
+          <div class="frame" aria-hidden="true">
+            <div class="frame-bar"><div class="frame-dots"><i></i><i></i><i></i></div><div class="frame-url">jcrangerr.netlify.app</div></div>
+            <div class="frame-body">
+              <div class="row"><span class="dot"></span><span class="t" data-es="Video hero de fondo" data-en="Background hero video"></span></div>
+              <div class="row"><span class="dot cer"></span><span class="t" data-es="Feed de Instagram con Elfsight" data-en="Instagram feed via Elfsight"></span></div>
+              <div class="row"><span class="dot ora"></span><span>HTML · CSS · JavaScript · Vite</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- FitTrack -->
+        <article class="card proj g-purple">
+          <div class="proj-copy">
+            <span class="proj-kind t" data-es="App móvil · En desarrollo" data-en="Mobile app · In progress"></span>
+            <h3>FitTrack</h3>
+            <p class="t"
+               data-es="App móvil de salud y rendimiento atlético. Calcula tu gasto energético diario total (TDEE), calorías activas y macronutrientes, con una interfaz inspirada en Strava."
+               data-en="Mobile health and athletic-performance app. It tracks Total Daily Energy Expenditure (TDEE), active calories and macronutrients, with a Strava-inspired interface."></p>
+            <div class="chips">
+              <span class="chip">React Native</span><span class="chip">UI/UX</span><span class="chip">TDEE</span><span class="chip t" data-es="Macronutrientes" data-en="Macronutrients"></span>
+            </div>
+          </div>
+          <div class="phone" aria-hidden="true">
+            <div class="phone-title">FitTrack</div>
+            <div class="metric">
+              <div class="metric-top"><span>TDEE</span><span class="t" data-es="Gasto diario" data-en="Daily burn"></span></div>
+              <div class="bar"><i style="width:72%; background: var(--color-spring-green)"></i></div>
+            </div>
+            <div class="metric">
+              <div class="metric-top"><span class="t" data-es="Calorías activas" data-en="Active calories"></span><span>Strava-style</span></div>
+              <div class="bar"><i style="width:48%; background: var(--color-ember-orange)"></i></div>
+            </div>
+            <div class="metric">
+              <div class="metric-top"><span class="t" data-es="Macros" data-en="Macros"></span><span>P · C · G</span></div>
+              <div class="bar"><i style="width:60%; background: var(--color-vivid-cerulean)"></i></div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICACIONES -->
+  <section id="certs" class="block">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="t" data-es="Certificaciones" data-en="Certifications"></h2>
+      </div>
+
+      <article class="card scrum g-teal">
+        <div class="scrum-badge" aria-hidden="true"><div><b>SFC™</b><small>Scrum Fundamentals<br>Certified</small></div></div>
+        <div>
+          <h3>Scrum Fundamentals Certified</h3>
+          <p class="t"
+             data-es="Examen de certificación aprobado en SCRUMstudy. Designación oficial SFC™ que respalda mi trabajo con roles, eventos y artefactos de Scrum."
+             data-en="Certification exam passed with SCRUMstudy. Official SFC™ designation covering Scrum roles, events and artifacts."></p>
+          <div class="chips">
+            <span class="chip">SCRUMstudy</span>
+            <span class="chip t" data-es="Otorgado: 19 sep 2026" data-en="Granted: Sep 19, 2026"></span>
+            <span class="chip">ID 1192271</span>
+          </div>
+        </div>
+      </article>
+
+      <div class="cert-grid">
+        <div class="cert g-slate"><div class="cert-year">2026</div><h3>AWS CDK — Getting Started</h3><p>AWS Training</p></div>
+        <div class="cert g-slate"><div class="cert-year">2025</div><h3>Relational Database</h3><p>freeCodeCamp · 300 hrs</p></div>
+        <div class="cert g-slate"><div class="cert-year">2025</div><h3>Responsive Web Design</h3><p>freeCodeCamp · 300 hrs</p></div>
+        <div class="cert g-slate"><div class="cert-year">2025</div><h3>JavaScript Algorithms &amp; Data Structures</h3><p>freeCodeCamp</p></div>
+        <div class="cert g-slate"><div class="cert-year">Python</div><h3>Python</h3><p>freeCodeCamp</p></div>
+        <div class="cert g-slate"><div class="cert-year">Cisco</div><h3>Basic Networking</h3><p>Cisco</p></div>
+        <div class="cert g-slate"><div class="cert-year">Talento Digital</div><h3 class="t" data-es="Ciberseguridad" data-en="Cybersecurity"></h3><p>Talento Digital</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCACIÓN -->
+  <section id="education" class="block">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="t" data-es="Educación" data-en="Education"></h2>
+      </div>
+      <div class="edu-grid">
+        <article class="card edu g-navy">
+          <div class="edu-year t" data-es="Graduada · Nov 2025" data-en="Graduated · Nov 2025"></div>
+          <h3 class="t" data-es="Ingeniería de Sistemas y Computación" data-en="B.S. Systems &amp; Computing Engineering"></h3>
+          <div class="school">Universidad Dominicana O&amp;M</div>
+          <p class="d t"
+             data-es="Desarrollo de software, arquitectura de sistemas, bases de datos relacionales y redes informáticas."
+             data-en="Software development, systems architecture, relational databases and computer networks."></p>
+        </article>
+        <article class="card edu g-orange">
+          <div class="edu-year">2016 – 2020</div>
+          <h3 class="t" data-es="Bachiller Técnico en Desarrollo de Software y Administración TI" data-en="Technical Bachelor in Software Development &amp; IT Administration"></h3>
+          <div class="school">Politécnico Salesiano Arquídes Calderón</div>
+          <p class="d t"
+             data-es="Base técnica en lógica de programación, administración de sistemas informáticos y fundamentos de desarrollo web."
+             data-en="Technical foundation in programming logic, computer systems administration and web development fundamentals."></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contact" class="block">
+    <div class="wrap">
+      <div class="card g-purple">
+        <div class="contact">
+          <div>
+            <h2 class="t" data-es="¿Tienes un proyecto en mente?" data-en="Have a project in mind?"></h2>
+            <p class="lead t"
+               data-es="Disponible para puestos Full Stack a tiempo completo, proyectos freelance o contratos remotos."
+               data-en="Available for full-time Full Stack roles, freelance projects or remote contracts."></p>
+            <div class="contact-links">
+              <a class="c-row" href="mailto:jeniferreyesperez@gmail.com"><span>Email</span><span>jeniferreyesperez@gmail.com</span></a>
+              <a class="c-row" href="tel:+18296474052"><span class="t" data-es="Teléfono" data-en="Phone"></span><span>829-647-4052</span></a>
+              <a class="c-row" href="https://linkedin.com/in/jenifer-reyes-perez-9613a1399" target="_blank" rel="noopener"><span>LinkedIn</span><span>in/jenifer-reyes-perez</span></a>
+            </div>
+          </div>
+          <div class="wa">
+            <h3 class="t" data-es="Mensaje directo por WhatsApp" data-en="Direct WhatsApp message"></h3>
+            <p class="t"
+               data-es="Si prefieres una respuesta rápida sobre una vacante o proyecto, escríbeme directamente."
+               data-en="If you'd like a quick reply about a role or project, message me directly."></p>
+            <a class="btn btn-wa" href="https://wa.me/18296474052?text=Hola%20Jenifer%2C%20vi%20tu%20portafolio%20y%20me%20interesa%20contactarte." target="_blank" rel="noopener">
+              <span class="t" data-es="Abrir WhatsApp · 829-647-4052" data-en="Open WhatsApp · 829-647-4052"></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
 
   <!-- FOOTER -->
   <footer>
-    <p>© 2026 JENIFER REYES PÉREZ</p>
-    <div>
-      <a href="https://linkedin.com/in/jenifer-reyes-perez-9613a1399" target="_blank">LinkedIn</a> · 
-      <a href="https://wolffitnessmarket.com" target="_blank">WFM</a> · 
-      <a href="https://www.jmodepem.com" target="_blank">JM ODEPEM</a> · 
-      <a href="https://jcrangerr.netlify.app/" target="_blank">RANGERR</a>
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <div class="foot-brand">Jenifer Reyes Pérez</div>
+          <p class="foot-note t" data-es="Ingeniera de Sistemas y desarrolladora Full Stack. Santiago de los Caballeros, República Dominicana." data-en="Systems Engineer and Full Stack developer. Santiago de los Caballeros, Dominican Republic."></p>
+        </div>
+        <div>
+          <h4 class="t" data-es="Navegar" data-en="Navigate"></h4>
+          <ul>
+            <li><a href="#about"><span class="t" data-es="Sobre mí" data-en="About"></span></a></li>
+            <li><a href="#stack">Stack</a></li>
+            <li><a href="#experience"><span class="t" data-es="Experiencia" data-en="Experience"></span></a></li>
+            <li><a href="#certs"><span class="t" data-es="Certificaciones" data-en="Certifications"></span></a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="t" data-es="Proyectos" data-en="Projects"></h4>
+          <ul>
+            <li><a href="https://wolffitnessmarket.com" target="_blank" rel="noopener">Wolfs Fitness Market</a></li>
+            <li><a href="https://www.jmodepem.com" target="_blank" rel="noopener">JM ODEPEM</a></li>
+            <li><a href="https://jcrangerr.netlify.app/" target="_blank" rel="noopener">Rangerr Aesthetic</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="t" data-es="Contacto" data-en="Contact"></h4>
+          <ul>
+            <li><a href="mailto:jeniferreyesperez@gmail.com">Email</a></li>
+            <li><a href="https://linkedin.com/in/jenifer-reyes-perez-9613a1399" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://wa.me/18296474052" target="_blank" rel="noopener">WhatsApp</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="foot-bottom">© 2026 Jenifer Reyes Pérez</p>
     </div>
   </footer>
 
   <script>
-    // CURSOR MOVEMENT
-    const cursor = document.getElementById('cursor');
-    let mx = 0, my = 0;
-    document.addEventListener('mousemove', e => {
-      mx = e.clientX; my = e.clientY;
-      cursor.style.transform = `translate3d(${mx - 5}px, ${my - 5}px, 0)`;
-    });
+    var titles = {
+      es: 'Jenifer Reyes Pérez — Ingeniera de Sistemas y Full Stack',
+      en: 'Jenifer Reyes Pérez — Systems Engineer & Full Stack Developer'
+    };
 
-    // LANG ENGINE
     function setLang(l) {
-      document.getElementById('btnEs').classList.toggle('active', l === 'es');
-      document.getElementById('btnEn').classList.toggle('active', l === 'en');
-      
-      document.querySelectorAll('.t').forEach(el => {
-        const val = el.getAttribute('data-' + l);
-        if (val) el.innerHTML = val;
+      document.documentElement.lang = l;
+      document.title = titles[l];
+      document.getElementById('btnEs').setAttribute('aria-pressed', String(l === 'es'));
+      document.getElementById('btnEn').setAttribute('aria-pressed', String(l === 'en'));
+      document.querySelectorAll('.t').forEach(function (el) {
+        var val = el.getAttribute('data-' + l);
+        if (val !== null) el.innerHTML = val;
       });
-      localStorage.setItem('preferredLang', l);
+      try { localStorage.setItem('preferredLang', l); } catch (e) {}
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-      const savedLang = localStorage.getItem('preferredLang') || 'es';
-      setLang(savedLang);
-    });
+    (function init() {
+      var saved = 'es';
+      try { saved = localStorage.getItem('preferredLang') || 'es'; } catch (e) {}
+      setLang(saved === 'en' ? 'en' : 'es');
+    })();
   </script>
 </body>
 </html>
