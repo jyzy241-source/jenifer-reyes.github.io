@@ -7,325 +7,22 @@
   <meta name="description" content="Portafolio de Jenifer Reyes Pérez, Ingeniera de Sistemas y desarrolladora Full Stack (React, Node.js, PostgreSQL, .NET). Proyectos en producción, certificada en Scrum (SFC™)." />
   <meta property="og:title" content="Jenifer Reyes Pérez — Full Stack Engineer" />
   <meta property="og:description" content="Aplicaciones web y móviles en producción real. React, Node.js, PostgreSQL, C# .NET, Docker y Scrum." />
-  <meta name="theme-color" content="#0E0F2D" />
+  <meta name="theme-color" content="#060b12" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <style>
-    /* ============ TOKENS (guía Discord) ============ */
-    :root {
-      --color-blurple: #5865f2;
-      --color-dark-blurple: #3442d9;
-      --color-hover-blurple: #8891f2;
-      --color-spring-green: #57f287;
-      --color-fuchsia: #eb459e;
-      --color-vivid-cerulean: #00b0f4;
-      --color-ember-orange: #fda220;
-      --color-ekko-red: #de2761;
-      --color-void: #000000;
-      --color-snow: #ffffff;
-      --color-not-quite-black: #23272a;
-      --color-dark-charcoal: #2c2f33;
-      --color-fog: #babcd9;
-      --color-greyple: #99aab5;
-      --color-dim-grey: #50555f;
-
-      --surface-cosmic: #0e0f2d;
-      --surface-chrome: #23272a;
-      --surface-app: #2c2f33;
-
-      --font-display: 'Poppins', 'Nunito', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-      --font-body: 'Inter', 'DM Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-
-      --radius-button: 12px;
-      --radius-button-lg: 16px;
-      --radius-card: 16px;
-      --radius-panel: 24px;
-      --radius-pill: 104px;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
-
-    body {
-      font-family: var(--font-body);
-      font-size: 16px; line-height: 1.5; letter-spacing: 0.013em;
-      color: var(--color-fog);
-      background: var(--surface-cosmic);
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* Campo de estrellas: entorno total, sin cambiar nunca de fondo */
-    body::before {
-      content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none;
-      background:
-        radial-gradient(1.5px 1.5px at 12% 18%, rgba(255,255,255,.55) 50%, transparent 51%),
-        radial-gradient(1px 1px at 28% 64%, rgba(255,255,255,.4) 50%, transparent 51%),
-        radial-gradient(1.5px 1.5px at 46% 32%, rgba(186,188,217,.5) 50%, transparent 51%),
-        radial-gradient(1px 1px at 63% 78%, rgba(255,255,255,.45) 50%, transparent 51%),
-        radial-gradient(1.5px 1.5px at 78% 22%, rgba(255,255,255,.5) 50%, transparent 51%),
-        radial-gradient(1px 1px at 91% 55%, rgba(186,188,217,.45) 50%, transparent 51%),
-        radial-gradient(1px 1px at 6% 88%, rgba(255,255,255,.35) 50%, transparent 51%),
-        radial-gradient(1.5px 1.5px at 54% 92%, rgba(255,255,255,.4) 50%, transparent 51%),
-        linear-gradient(180deg, #17184a 0%, #0e0f2d 38%, #0a0b22 100%);
-      background-size: 420px 420px, 380px 380px, 460px 460px, 400px 400px, 440px 440px, 360px 360px, 340px 340px, 480px 480px, 100% 100%;
-    }
-
-    a { color: inherit; }
-    :focus-visible { outline: 3px solid var(--color-hover-blurple); outline-offset: 3px; border-radius: 6px; }
-
-    .wrap { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-
-    /* ============ TIPOGRAFÍA ============ */
-    h1, h2, h3 { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; color: var(--color-snow); letter-spacing: -0.01em; }
-    h1 { font-size: clamp(2.6rem, 6.2vw, 3.8rem); line-height: 0.92; }
-    h2 { font-size: clamp(2rem, 4.6vw, 3rem); line-height: 0.95; }
-    h3 { font-size: 1.5rem; line-height: 1.1; }
-    .lead { font-size: 1.25rem; line-height: 1.38; color: var(--color-fog); }
-    strong { color: var(--color-snow); font-weight: 600; }
-
-    /* ============ BOTONES ============ */
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      font-family: var(--font-body); font-weight: 500; font-size: 1rem; letter-spacing: 0.016em;
-      border-radius: var(--radius-button); text-decoration: none; cursor: pointer;
-      transition: background-color .2s, color .2s; border: 1px solid transparent;
-    }
-    .btn-primary { background: var(--color-blurple); color: var(--color-snow); padding: 19.5px 24px; }
-    .btn-primary:hover { background: var(--color-dark-blurple); }
-    .btn-secondary { background: var(--color-snow); color: var(--color-not-quite-black); border-color: var(--color-not-quite-black); padding: 15px 24px; }
-    .btn-secondary:hover { background: #ececf5; }
-    .btn-ghost { background: transparent; color: var(--color-snow); border-color: var(--color-snow); padding: 10px 16px; }
-    .btn-ghost:hover { background: rgba(255,255,255,.1); }
-    .btn-login { background: var(--color-snow); color: var(--color-void); border-color: var(--color-void); border-radius: var(--radius-button-lg); padding: 10px 16px; }
-    .btn-login:hover { background: #ececf5; }
-
-    /* ============ NAV ============ */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(14, 15, 45, .78); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-    }
-    .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 72px; }
-    .nav-brand { font-family: var(--font-display); font-weight: 800; font-size: 1.05rem; letter-spacing: -0.01em; text-transform: uppercase; color: var(--color-snow); text-decoration: none; white-space: nowrap; }
-    .nav-menu { display: flex; gap: 4px; list-style: none; }
-    .nav-menu a { display: block; padding: 8px 12px; border-radius: 10px; color: var(--color-snow); text-decoration: none; font-size: 1rem; transition: background-color .2s; }
-    .nav-menu a:hover { background: rgba(255,255,255,.1); }
-    .nav-right { display: flex; align-items: center; gap: 12px; }
-    .lang-switch { display: flex; gap: 4px; padding: 4px; border: 1px solid rgba(255,255,255,.35); border-radius: var(--radius-button); }
-    .lang-btn { font-family: var(--font-body); font-weight: 500; font-size: .85rem; padding: 6px 10px; border: none; border-radius: 8px; cursor: pointer; background: transparent; color: var(--color-snow); transition: background-color .2s, color .2s; }
-    .lang-btn[aria-pressed="true"] { background: var(--color-snow); color: var(--color-not-quite-black); }
-
-    /* ============ HERO ============ */
-    #hero { padding: 152px 0 96px; }
-    .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
-    .hero-copy h1 { margin-bottom: 28px; }
-    .hero-copy .lead { max-width: 460px; margin-bottom: 36px; }
-    .cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-bottom: 40px; }
-    .status-row { display: flex; flex-wrap: wrap; gap: 10px; }
-    .status-chip { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: var(--radius-pill); background: rgba(255,255,255,.08); color: var(--color-snow); font-size: .88rem; font-weight: 500; }
-    .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--color-spring-green); flex: none; }
-    .dot.cer { background: var(--color-vivid-cerulean); }
-    .dot.ora { background: var(--color-ember-orange); }
-
-    /* Mock-up: ventana de chat (UI real de Discord) */
-    .hero-stage { position: relative; padding: 28px 0 28px 28px; }
-    .chat-window { display: grid; grid-template-columns: 188px 1fr; background: var(--surface-app); border-radius: var(--radius-card); overflow: hidden; min-height: 420px; }
-    .chat-side { background: var(--surface-chrome); padding: 16px 12px; display: flex; flex-direction: column; gap: 4px; }
-    .chat-server { font-family: var(--font-display); font-weight: 700; font-size: .85rem; color: var(--color-snow); padding: 4px 8px 12px; text-transform: uppercase; letter-spacing: -0.01em; }
-    .chan { display: block; font-size: .9rem; color: var(--color-greyple); padding: 6px 8px; border-radius: 6px; text-decoration: none; }
-    .chan:hover { background: rgba(255,255,255,.06); color: var(--color-snow); }
-    .chan.on { background: rgba(255,255,255,.1); color: var(--color-snow); }
-    .chat-main { display: flex; flex-direction: column; min-width: 0; }
-    .chat-head { padding: 14px 20px; border-bottom: 1px solid rgba(0,0,0,.3); font-weight: 600; font-size: .92rem; color: var(--color-snow); }
-    .chat-head span { color: var(--color-greyple); font-weight: 400; }
-    .chat-body { padding: 20px; display: flex; flex-direction: column; gap: 18px; }
-    .msg { display: flex; gap: 12px; opacity: 0; animation: msgIn .5s ease forwards; }
-    .msg:nth-child(1) { animation-delay: .5s; }
-    .msg:nth-child(2) { animation-delay: 1.5s; }
-    .msg:nth-child(3) { animation-delay: 2.5s; }
-    .msg:nth-child(4) { animation-delay: 3.5s; }
-    @keyframes msgIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-    .avatar { width: 38px; height: 38px; border-radius: 50%; flex: none; display: grid; place-items: center; font-family: var(--font-display); font-weight: 800; font-size: .85rem; color: var(--color-snow); }
-    .av-j { background: var(--color-fuchsia); }
-    .av-b { background: #1f9d63; }
-    .msg-name { font-weight: 600; font-size: .92rem; color: var(--color-snow); display: flex; align-items: center; gap: 8px; }
-    .bot-tag { font-size: .62rem; font-weight: 600; background: var(--color-blurple); color: var(--color-snow); padding: 1px 5px; border-radius: 4px; text-transform: uppercase; letter-spacing: .03em; }
-    .msg-text { font-size: .92rem; color: #dcdeef; line-height: 1.45; }
-    .embed { margin-top: 6px; border-left: 4px solid var(--color-spring-green); background: var(--surface-chrome); border-radius: 6px; padding: 10px 14px; display: grid; gap: 4px; font-size: .84rem; color: var(--color-fog); }
-    .embed b { color: var(--color-snow); font-weight: 600; }
-    .embed .ok { color: var(--color-spring-green); }
-
-    /* Props flotantes en los bordes */
-    .prop { position: absolute; line-height: 1; user-select: none; pointer-events: none; }
-    .prop.p1 { font-size: 5.2rem; top: -14px; right: -18px; transform: rotate(12deg); }
-    .prop.p2 { font-size: 3.6rem; bottom: -6px; left: 0; transform: rotate(-14deg); }
-    .prop.p3 { font-size: 2.6rem; top: 44%; left: -10px; transform: rotate(8deg); }
-
-    /* ============ SECCIONES ============ */
-    section.block { padding: 88px 0; }
-    .sec-head { margin-bottom: 48px; max-width: 720px; }
-    .sec-head h2 { margin-bottom: 16px; }
-
-    .card { border-radius: var(--radius-panel); padding: 48px; color: var(--color-snow); position: relative; }
-    .card p, .card li { color: rgba(255,255,255,.9); }
-
-    /* Fondos propios por tarjeta: la identidad de cada sección vive aquí */
-    .g-purple { background: linear-gradient(135deg, #5b1f8f 0%, #b0339a 100%); }
-    .g-green { background: linear-gradient(135deg, #0d5a3b 0%, #1f9d63 100%); }
-    .g-cer { background: linear-gradient(135deg, #0a4770 0%, #0b83b8 100%); }
-    .g-orange { background: linear-gradient(135deg, #8a3a08 0%, #c2620c 100%); }
-    .g-pink { background: linear-gradient(135deg, #7d1a55 0%, #cc3a86 100%); }
-    .g-slate { background: linear-gradient(135deg, #23272a 0%, #2c2f33 100%); }
-    .g-teal { background: linear-gradient(135deg, #0b4d55 0%, #12857f 100%); }
-    .g-navy { background: linear-gradient(135deg, #1b1e6b 0%, #2b2f9e 100%); }
-
-    .chip { display: inline-block; padding: 6px 14px; border-radius: var(--radius-pill); background: rgba(0,0,0,.28); color: var(--color-snow); font-size: .82rem; font-weight: 500; letter-spacing: .016em; }
-    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
-
-    /* ABOUT */
-    .about-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 56px; align-items: start; }
-    .about-grid p { font-size: 1.02rem; line-height: 1.6; margin-bottom: 18px; max-width: 62ch; }
-    .about-grid .chips { margin-top: 24px; }
-    .facts { display: grid; gap: 0; }
-    .fact { display: flex; justify-content: space-between; gap: 16px; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,.22); font-size: .95rem; }
-    .fact:first-child { border-top: 1px solid rgba(255,255,255,.22); }
-    .fact span:first-child { color: rgba(255,255,255,.72); }
-    .fact span:last-child { color: var(--color-snow); font-weight: 600; text-align: right; }
-
-    /* STACK */
-    .stack-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .stack-card { border-radius: var(--radius-card); padding: 32px; color: var(--color-snow); }
-    .stack-card h3 { font-size: 1.15rem; margin-bottom: 20px; }
-
-    /* EXPERIENCIA */
-    .xp-list { display: grid; gap: 20px; }
-    .xp { display: grid; grid-template-columns: 210px 1fr; gap: 40px; padding: 40px; }
-    .xp-date { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: 1.25rem; line-height: 1.1; letter-spacing: -0.01em; color: var(--color-snow); }
-    .xp-tag { display: block; margin-top: 10px; font-family: var(--font-body); font-weight: 500; text-transform: none; font-size: .88rem; color: rgba(255,255,255,.75); letter-spacing: .016em; }
-    .xp h3 { font-size: 1.4rem; margin-bottom: 4px; }
-    .xp-org { font-size: .95rem; color: rgba(255,255,255,.8); margin-bottom: 18px; }
-    .xp ul { list-style: none; display: grid; gap: 10px; }
-    .xp li { position: relative; padding-left: 20px; font-size: .96rem; line-height: 1.5; }
-    .xp li::before { content: ''; position: absolute; left: 0; top: .62em; width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.7); }
-
-    /* PROYECTOS */
-    .proj-list { display: grid; gap: 28px; }
-    .proj { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; overflow: visible; }
-    .proj.rev .proj-copy { order: 2; }
-    .proj-kind { display: inline-block; font-size: .85rem; font-weight: 600; color: rgba(255,255,255,.8); margin-bottom: 14px; }
-    .proj h3 { font-size: clamp(1.8rem, 3.4vw, 2.6rem); line-height: .95; margin-bottom: 16px; }
-    .proj-copy p { line-height: 1.6; margin-bottom: 22px; max-width: 46ch; }
-    .proj-copy .chips { margin-bottom: 28px; }
-    .proj-links { display: flex; flex-wrap: wrap; gap: 12px; }
-
-    /* Marco de navegador / teléfono */
-    .frame { background: var(--surface-app); border-radius: var(--radius-card); overflow: hidden; }
-    .frame-bar { background: var(--surface-chrome); padding: 10px 14px; display: flex; align-items: center; gap: 12px; }
-    .frame-dots { display: flex; gap: 6px; }
-    .frame-dots i { width: 10px; height: 10px; border-radius: 50%; background: var(--color-dim-grey); display: block; }
-    .frame-url { flex: 1; font-size: .78rem; color: var(--color-greyple); background: rgba(0,0,0,.28); padding: 4px 12px; border-radius: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .frame-body { padding: 20px; display: grid; gap: 10px; }
-    .row { display: flex; align-items: center; gap: 12px; padding: 12px 14px; background: var(--surface-chrome); border-radius: 10px; font-size: .88rem; color: #dcdeef; }
-    .steps { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; padding: 4px 0 8px; }
-    .steps i { height: 8px; border-radius: 4px; background: var(--color-dim-grey); display: block; }
-    .steps i.on { background: var(--color-spring-green); }
-    .steps-label { font-size: .8rem; color: var(--color-greyple); }
-
-    .phone { width: min(280px, 100%); margin: 0 auto; background: var(--surface-app); border-radius: 36px; border: 8px solid var(--surface-chrome); padding: 22px 16px 24px; display: grid; gap: 12px; }
-    .phone-title { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: 1rem; color: var(--color-snow); letter-spacing: -0.01em; }
-    .metric { background: var(--surface-chrome); border-radius: 12px; padding: 12px 14px; }
-    .metric-top { display: flex; justify-content: space-between; font-size: .82rem; color: #dcdeef; margin-bottom: 8px; }
-    .bar { height: 8px; border-radius: 4px; background: var(--color-dim-grey); overflow: hidden; }
-    .bar i { display: block; height: 100%; border-radius: 4px; }
-
-    /* CERTIFICACIONES */
-    .scrum { display: grid; grid-template-columns: auto 1fr; gap: 40px; align-items: center; margin-bottom: 20px; }
-    .scrum-badge { width: 132px; height: 132px; border-radius: 50%; background: var(--color-snow); display: grid; place-items: center; text-align: center; color: var(--color-not-quite-black); font-family: var(--font-display); font-weight: 800; line-height: 1; }
-    .scrum-badge b { display: block; font-size: 2.2rem; color: #0b6b45; letter-spacing: -0.01em; }
-    .scrum-badge small { display: block; font-size: .62rem; text-transform: uppercase; margin-top: 6px; letter-spacing: 0; }
-    .scrum h3 { font-size: clamp(1.7rem, 3.2vw, 2.4rem); margin-bottom: 12px; }
-    .scrum p { max-width: 58ch; margin-bottom: 20px; line-height: 1.55; }
-    .cert-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .cert { border-radius: var(--radius-card); padding: 24px; }
-    .cert-year { font-family: var(--font-display); font-weight: 800; font-size: .9rem; color: var(--color-snow); margin-bottom: 10px; }
-    .cert h3 { font-size: 1rem; line-height: 1.2; margin-bottom: 8px; }
-    .cert p { font-size: .88rem; color: var(--color-fog); }
-
-    /* EDUCACIÓN */
-    .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    .edu { padding: 40px; }
-    .edu-year { font-family: var(--font-display); font-weight: 800; font-size: 1rem; margin-bottom: 14px; color: var(--color-snow); }
-    .edu h3 { font-size: 1.35rem; margin-bottom: 8px; }
-    .edu .school { margin-bottom: 14px; color: rgba(255,255,255,.85); font-weight: 500; }
-    .edu p.d { font-size: .95rem; line-height: 1.55; }
-
-    /* CONTACTO */
-    .contact { display: grid; grid-template-columns: 1.1fr .9fr; gap: 56px; align-items: center; }
-    .contact h2 { font-size: clamp(2.2rem, 5.2vw, 3.6rem); line-height: .9; margin-bottom: 22px; }
-    .contact .lead { color: rgba(255,255,255,.9); margin-bottom: 30px; max-width: 46ch; }
-    .contact-links { display: grid; gap: 10px; }
-    .c-row { display: flex; justify-content: space-between; gap: 16px; padding: 16px 20px; border-radius: var(--radius-button); background: rgba(0,0,0,.28); text-decoration: none; color: var(--color-snow); font-size: .95rem; transition: background-color .2s; }
-    .c-row:hover { background: rgba(0,0,0,.42); }
-    .c-row span:first-child { color: rgba(255,255,255,.72); }
-    .wa { background: var(--surface-chrome); border-radius: var(--radius-card); padding: 32px; display: grid; gap: 16px; }
-    .wa h3 { font-size: 1.3rem; }
-    .wa p { color: var(--color-fog); line-height: 1.55; }
-    .btn-wa { background: var(--color-spring-green); color: #08341d; padding: 15px 24px; font-weight: 600; }
-    .btn-wa:hover { background: #7ff7a6; }
-
-    /* FOOTER */
-    footer { background: var(--surface-chrome); padding: 64px 0 32px; margin-top: 40px; }
-    .foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 32px; margin-bottom: 48px; }
-    .foot-brand { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: 1.1rem; color: var(--color-snow); letter-spacing: -0.01em; margin-bottom: 10px; }
-    .foot-note { font-size: .9rem; max-width: 30ch; }
-    footer h4 { font-family: var(--font-body); font-weight: 500; font-size: 1rem; color: var(--color-snow); letter-spacing: 0.013em; margin-bottom: 14px; }
-    footer ul { list-style: none; display: grid; gap: 8px; }
-    footer li a { color: var(--color-fog); text-decoration: none; font-size: 1rem; }
-    footer li a:hover { color: var(--color-snow); }
-    .foot-bottom { font-size: .85rem; color: var(--color-greyple); }
-
-    /* ============ RESPONSIVE ============ */
-    @media (max-width: 1000px) {
-      .nav-menu { display: none; }
-      .hero-grid, .about-grid, .proj, .contact, .edu-grid { grid-template-columns: 1fr; }
-      .proj.rev .proj-copy { order: 0; }
-      .stack-grid, .cert-grid { grid-template-columns: repeat(2, 1fr); }
-      .xp { grid-template-columns: 1fr; gap: 16px; }
-      .foot-grid { grid-template-columns: 1fr 1fr; }
-      .hero-stage { padding-left: 0; }
-    }
-    @media (max-width: 640px) {
-      .wrap { padding: 0 16px; }
-      #hero { padding: 120px 0 64px; }
-      section.block { padding: 64px 0; }
-      .card { padding: 28px; }
-      .xp, .edu { padding: 28px; }
-      .stack-grid, .cert-grid { grid-template-columns: 1fr; }
-      .chat-window { grid-template-columns: 1fr; }
-      .chat-side { display: none; }
-      .scrum { grid-template-columns: 1fr; gap: 24px; }
-      .nav-brand { font-size: .9rem; }
-      .btn-login { display: none; }
-      .prop.p1 { font-size: 3.6rem; right: -6px; }
-      .prop.p3 { display: none; }
-      .foot-grid { grid-template-columns: 1fr; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .msg { animation: none; opacity: 1; }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
   <!-- NAV -->
   <nav>
     <div class="wrap nav-inner">
-      <a href="#hero" class="nav-brand">Jenifer Reyes</a>
+      <a href="#hero" class="nav-brand">JENIX<span>.DEV</span></a>
       <ul class="nav-menu">
         <li><a href="#about"><span class="t" data-es="Sobre mí" data-en="About"></span></a></li>
+        <li><a href="#services"><span class="t" data-es="Servicios" data-en="Services"></span></a></li>
         <li><a href="#stack"><span class="t" data-es="Stack" data-en="Stack"></span></a></li>
         <li><a href="#experience"><span class="t" data-es="Experiencia" data-en="Experience"></span></a></li>
         <li><a href="#projects"><span class="t" data-es="Proyectos" data-en="Projects"></span></a></li>
@@ -345,84 +42,20 @@
   <main>
 
   <!-- HERO -->
-  <section id="hero">
-    <div class="wrap hero-grid">
-      <div class="hero-copy">
-        <h1 class="t" data-es="Full Stack que vive en producción" data-en="Full Stack that lives in production"></h1>
-        <p class="lead t"
-           data-es="Soy <strong>Jenifer Reyes Pérez</strong>, ingeniera de sistemas. Diseño, construyo y despliego aplicaciones web y móviles para clientes reales: React, Node.js, PostgreSQL y servidores configurados desde cero."
-           data-en="I'm <strong>Jenifer Reyes Pérez</strong>, a systems engineer. I design, build and deploy web and mobile apps for real clients: React, Node.js, PostgreSQL and servers configured from scratch."></p>
-        <div class="cta-row">
-          <a href="#contact" class="btn btn-secondary"><span class="t" data-es="Hablemos" data-en="Let's talk"></span></a>
-          <a href="#projects" class="btn btn-primary"><span class="t" data-es="Ver proyectos" data-en="See projects"></span></a>
-        </div>
-        <div class="status-row">
-          <span class="status-chip"><span class="dot"></span><span class="t" data-es="Disponible de inmediato" data-en="Available now"></span></span>
-          <span class="status-chip"><span class="dot cer"></span><span class="t" data-es="Remoto / Híbrido" data-en="Remote / Hybrid"></span></span>
-          <span class="status-chip"><span class="dot ora"></span><span>Scrum SFC™</span></span>
-        </div>
-      </div>
-
-      <div class="hero-stage" aria-hidden="true">
-        <div class="chat-window">
-          <div class="chat-side">
-            <div class="chat-server">jenifer-portfolio</div>
-            <a class="chan" href="#about"># <span class="t" data-es="sobre-mi" data-en="about-me"></span></a>
-            <a class="chan" href="#stack"># stack</a>
-            <a class="chan on" href="#projects"># <span class="t" data-es="proyectos" data-en="projects"></span></a>
-            <a class="chan" href="#certs"># <span class="t" data-es="certificaciones" data-en="certifications"></span></a>
-            <a class="chan" href="#contact"># <span class="t" data-es="contacto" data-en="contact"></span></a>
-          </div>
-          <div class="chat-main">
-            <div class="chat-head"># <span class="t" data-es="proyectos" data-en="projects"></span> <span>&nbsp;·&nbsp;<span class="t" data-es="en producción" data-en="in production"></span></span></div>
-            <div class="chat-body">
-              <div class="msg">
-                <div class="avatar av-j">JR</div>
-                <div>
-                  <div class="msg-name">jenifer</div>
-                  <div class="msg-text t" data-es="Deploy de wolffitnessmarket.com listo." data-en="wolffitnessmarket.com deploy is live."></div>
-                </div>
-              </div>
-              <div class="msg">
-                <div class="avatar av-b">PM</div>
-                <div>
-                  <div class="msg-name">deploy-bot <span class="bot-tag">BOT</span></div>
-                  <div class="embed">
-                    <span><span class="ok">●</span> <b>PM2</b> online</span>
-                    <span><span class="ok">●</span> <b>Nginx</b> 200 OK</span>
-                    <span><span class="ok">●</span> <b>SSL</b> <span class="t" data-es="certificado válido" data-en="certificate valid"></span></span>
-                  </div>
-                </div>
-              </div>
-              <div class="msg">
-                <div class="avatar av-j">JR</div>
-                <div>
-                  <div class="msg-name">jenifer</div>
-                  <div class="msg-text t" data-es="Ahora: Vertical Slice + CQRS en .NET, con pruebas unitarias e integración." data-en="Now: Vertical Slice + CQRS in .NET, with unit and integration tests."></div>
-                </div>
-              </div>
-              <div class="msg">
-                <div class="avatar av-j">JR</div>
-                <div>
-                  <div class="msg-name">jenifer</div>
-                  <div class="msg-text t" data-es="Y acabo de certificarme en Scrum (SFC™)." data-en="And I just got certified in Scrum (SFC™)."></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <span class="prop p1">🤖</span>
-        <span class="prop p2">💎</span>
-        <span class="prop p3">🍑</span>
-      </div>
-    </div>
-  </section>
+  <section id="hero"><div class="wrap"><div class="hero-grid"><div class="hero-copy">
+<p class="eyebrow">JENIX.DEV / <span class="t " data-es="DESARROLLO FULL STACK" data-en="FULL STACK DEVELOPMENT">DESARROLLO FULL STACK</span></p>
+<h1><span class="t " data-es="Ideas que se convierten en &lt;em&gt;realidades.&lt;/em&gt;" data-en="Ideas that become &lt;em&gt;reality.&lt;/em&gt;">Ideas que se convierten en &lt;em&gt;realidades.&lt;/em&gt;</span></h1>
+<p class="hero-name"><span class="t " data-es="Soy Jenifer Reyes Pérez." data-en="I’m Jenifer Reyes Pérez.">Soy Jenifer Reyes Pérez.</span></p>
+<p class="t lead" data-es="Ingeniera de sistemas y desarrolladora full stack. Construyo aplicaciones web y móviles, desde la interfaz hasta su despliegue en producción." data-en="Systems engineer and full stack developer. I build web and mobile applications, from the interface to production deployment.">Ingeniera de sistemas y desarrolladora full stack. Construyo aplicaciones web y móviles, desde la interfaz hasta su despliegue en producción.</p>
+<div class="cta-row"><a class="btn btn-primary" href="#projects"><span class="t " data-es="Ver proyectos" data-en="View projects">Ver proyectos</span> <span>↓</span></a><a class="btn btn-ghost" href="https://wa.me/18292714334?text=Hola%20Jenifer%2C%20vi%20tu%20portafolio%20y%20quiero%20hablar%20de%20un%20proyecto." target="_blank" rel="noopener"><span class="t " data-es="Hablemos" data-en="Let’s talk">Hablemos</span> <span>↗</span></a></div>
+<div class="status-row"><span class="status-chip"><i class="dot"></i><span class="t " data-es="Disponible de inmediato" data-en="Available now">Disponible de inmediato</span></span><span class="status-chip"><span class="t " data-es="Remoto / Híbrido" data-en="Remote / Hybrid">Remoto / Híbrido</span></span><span class="status-chip">Scrum SFC™</span></div>
+</div><div class="hero-stage"><div class="orbit-label"><span class="t " data-es="IDEA → CÓDIGO → PRODUCCIÓN" data-en="IDEA → CODE → PRODUCTION">IDEA → CÓDIGO → PRODUCCIÓN</span></div><svg class="globe" viewBox="0 0 640 520" role="img" aria-label="Ilustración de un planeta conectado"><defs><radialGradient id="ocean" cx="45%" cy="18%" r="85%"><stop stop-color="#154d68"/><stop offset=".5" stop-color="#071826"/><stop offset="1" stop-color="#02060b"/></radialGradient><radialGradient id="halo"><stop offset=".66" stop-color="#00c7ef" stop-opacity="0"/><stop offset=".72" stop-color="#00c7ef" stop-opacity=".18"/><stop offset=".77" stop-color="#00c7ef" stop-opacity="0"/></radialGradient><clipPath id="planet"><circle cx="330" cy="385" r="252"/></clipPath><filter id="glow"><feGaussianBlur stdDeviation="5"/></filter><linearGradient id="edge" x2="0" y2="1"><stop stop-color="#4eeaff"/><stop offset=".6" stop-color="#00344e" stop-opacity="0"/></linearGradient></defs><circle cx="330" cy="385" r="348" fill="url(#halo)"/><g fill="#8fbbcf"><circle cx="71" cy="83" r="1"/><circle cx="230" cy="53" r="1.2"/><circle cx="410" cy="91" r="1"/><circle cx="529" cy="43" r="1"/><circle cx="580" cy="162" r="1.5"/><circle cx="145" cy="153" r="1"/><circle cx="336" cy="36" r=".8"/></g><circle cx="330" cy="385" r="254" fill="none" stroke="#00ceff" stroke-width="9" filter="url(#glow)"/><circle cx="330" cy="385" r="252" fill="url(#ocean)" stroke="url(#edge)" stroke-width="3"/><g clip-path="url(#planet)"><g fill="none" stroke="#1c465e" stroke-width="1" opacity=".65"><ellipse cx="330" cy="385" rx="100" ry="252"/><ellipse cx="330" cy="385" rx="193" ry="252"/><ellipse cx="330" cy="385" rx="252" ry="75"/><ellipse cx="330" cy="385" rx="252" ry="166"/><path d="M78 385h504M330 133v504"/></g><path d="m171 196 49-23 47 14 20 35-30 19-12 38 27 30-16 35-27-12-27-51-39-8-22-44zm105 150 45 19 36 56-19 47-34 49-19-29 8-48-23-40zm102-140 51-29 74 33 34 36-39 25-34-18-27 19-33-21-34 19-24-25z" fill="#14384a" stroke="#23526a"/><g fill="none" stroke="#00c7ef" stroke-opacity=".45"><path d="M217 252Q350 130 480 247M217 252Q225 370 314 422M314 422Q431 274 480 247"/></g><g fill="#73e9ff"><circle cx="217" cy="252" r="4"/><circle cx="314" cy="422" r="4"/><circle cx="480" cy="247" r="4"/></g><g fill="#afc6d4" font-size="10" font-family="monospace"><text x="228" y="249">RD</text><text x="326" y="426">BUILD</text><text x="492" y="245">DEPLOY</text></g></g></svg><p class="orbit-caption"><i class="dot"></i> <span class="t " data-es="SIN FRONTERAS. CON PROPÓSITO." data-en="WITHOUT BORDERS. WITH PURPOSE.">SIN FRONTERAS. CON PROPÓSITO.</span></p></div></div><div class="production-strip"><a href="https://wolffitnessmarket.com" target="_blank" rel="noopener"><i class="dot"></i> <span class="t " data-es="EN PRODUCCIÓN" data-en="IN PRODUCTION">EN PRODUCCIÓN</span> <strong>wolffitnessmarket.com ↗</strong></a><span>Frontend · Backend · <span class="t " data-es="Despliegue" data-en="Deployment">Despliegue</span></span><a href="#projects"><span class="t " data-es="EXPLORA MI TRABAJO" data-en="EXPLORE MY WORK">EXPLORA MI TRABAJO</span> ↓</a></div></div></section>
 
   <!-- SOBRE MÍ -->
   <section id="about" class="block">
     <div class="wrap">
       <div class="sec-head">
-        <h2 class="t" data-es="Sobre mí" data-en="About me"></h2>
+        <h2 class="t" data-es="Sobre mí" data-en="Technology with someone who stands behind it."></h2>
       </div>
       <div class="card g-purple">
         <div class="about-grid">
@@ -456,11 +89,12 @@
     </div>
   </section>
 
+<section id="services" class="block"><div class="wrap"><p class="eyebrow">02 / <span class="t " data-es="QUÉ PUEDO CONSTRUIR" data-en="WHAT I CAN BUILD">QUÉ PUEDO CONSTRUIR</span></p><div class="section-heading"><h2><span class="t " data-es="Tu idea, en el formato correcto." data-en="Your idea, in the right format.">Tu idea, en el formato correcto.</span></h2><p class="t " data-es="Del primer punto de contacto al sistema que sostiene tu negocio." data-en="From the first point of contact to the system that powers your business.">Del primer punto de contacto al sistema que sostiene tu negocio.</p></div><div class="services-grid"><a class="service" href="https://wa.me/18292714334?text=Hola%20Jenifer%2C%20vi%20tu%20portafolio%20y%20quiero%20hablar%20de%20un%20proyecto." target="_blank" rel="noopener"><span class="service-icon" aria-hidden="true">▤</span><span class="service-arrow">↗</span><h3><span class="t " data-es="Desarrollo web" data-en="Web development">Desarrollo web</span></h3><p class="t " data-es="Sitios y aplicaciones claros, funcionales y adaptables a cada pantalla." data-en="Clear, functional websites and applications that adapt to every screen.">Sitios y aplicaciones claros, funcionales y adaptables a cada pantalla.</p><small><span class="t " data-es="INTERFACES + LÓGICA DE NEGOCIO" data-en="INTERFACES + BUSINESS LOGIC">INTERFACES + LÓGICA DE NEGOCIO</span></small></a><a class="service" href="https://wa.me/18292714334?text=Hola%20Jenifer%2C%20vi%20tu%20portafolio%20y%20quiero%20hablar%20de%20un%20proyecto." target="_blank" rel="noopener"><span class="service-icon" aria-hidden="true">▯</span><span class="service-arrow">↗</span><h3><span class="t " data-es="Aplicaciones móviles" data-en="Mobile applications">Aplicaciones móviles</span></h3><p class="t " data-es="Experiencias que acompañan a tus usuarios desde la pantalla de su celular." data-en="Experiences that meet your users on their mobile screens.">Experiencias que acompañan a tus usuarios desde la pantalla de su celular.</p><small><span class="t " data-es="EXPERIENCIA + FUNCIONALIDAD" data-en="EXPERIENCE + FUNCTIONALITY">EXPERIENCIA + FUNCIONALIDAD</span></small></a><a class="service" href="https://wa.me/18292714334?text=Hola%20Jenifer%2C%20vi%20tu%20portafolio%20y%20quiero%20hablar%20de%20un%20proyecto." target="_blank" rel="noopener"><span class="service-icon" aria-hidden="true">♧</span><span class="service-arrow">↗</span><h3><span class="t " data-es="E-commerce" data-en="E-commerce">E-commerce</span></h3><p class="t " data-es="Tiendas online con catálogo, pagos e inventario para conectar con tus compradores." data-en="Online stores with catalogs, payments and inventory to connect with customers.">Tiendas online con catálogo, pagos e inventario para conectar con tus compradores.</p><small><span class="t " data-es="CATÁLOGO + COMPRA" data-en="CATALOG + CHECKOUT">CATÁLOGO + COMPRA</span></small></a><a class="service" href="https://wa.me/18292714334?text=Hola%20Jenifer%2C%20vi%20tu%20portafolio%20y%20quiero%20hablar%20de%20un%20proyecto." target="_blank" rel="noopener"><span class="service-icon" aria-hidden="true">⌘</span><span class="service-arrow">↗</span><h3><span class="t " data-es="Sistemas a medida" data-en="Custom software">Sistemas a medida</span></h3><p class="t " data-es="Software construido alrededor de tus procesos, tus datos y tu operación." data-en="Software built around your processes, data and operations.">Software construido alrededor de tus procesos, tus datos y tu operación.</p><small><span class="t " data-es="PROCESOS + INTEGRACIONES" data-en="PROCESSES + INTEGRATIONS">PROCESOS + INTEGRACIONES</span></small></a></div></div></section>
   <!-- STACK -->
   <section id="stack" class="block">
     <div class="wrap">
       <div class="sec-head">
-        <h2 class="t" data-es="Stack técnico" data-en="Technical stack"></h2>
+        <p class="eyebrow">03 / STACK</p><h2 class="t" data-es="Un stack. De extremo a extremo." data-en="One stack. End to end."></h2>
         <p class="lead t"
            data-es="Lo que uso para llevar un producto de la idea al servidor."
            data-en="What I use to take a product from idea to server."></p>
@@ -521,7 +155,7 @@
             <span class="chip">Postman</span><span class="chip">GitHub Pages</span><span class="chip">Vercel</span>
             <span class="chip">PayPal Live API</span><span class="chip">Cloudinary</span>
             <span class="chip">Formspree</span><span class="chip">Elfsight</span>
-            <span class="chip">Google Search Console</span>
+            <span class="chip">Google Search Console</span><span class="chip">Vite</span><span class="chip">Netlify</span>
           </div>
         </div>
 
@@ -533,7 +167,7 @@
   <section id="experience" class="block">
     <div class="wrap">
       <div class="sec-head">
-        <h2 class="t" data-es="Experiencia" data-en="Experience"></h2>
+        <p class="eyebrow">04 / EXPERIENCIA</p><h2 class="t" data-es="Experiencia" data-en="Experience"></h2>
         <p class="lead t"
            data-es="Proyectos reales, con clientes reales y servidores que siguen encendidos."
            data-en="Real projects, real clients, and servers that are still running."></p>
@@ -541,12 +175,12 @@
       <div class="xp-list">
 
         <article class="card xp g-teal">
-          <div class="xp-date"><span>2026</span><span class="xp-tag t" data-es="En desarrollo" data-en="In progress"></span></div>
+          <div class="xp-date"><span>2026</span><span class="xp-tag t" data-es="Completado" data-en="Completed"></span></div>
           <div>
             <h3>Full Stack Developer</h3>
             <p class="xp-org">Sosa-Frotman Inversiones · Moca, RD</p>
             <ul>
-              <li class="t" data-es="Diseño y construcción de una plataforma SaaS para una financiera: frontend, backend en Python, APIs, autenticación y seguridad, DevOps y pruebas." data-en="Designing and building a SaaS platform for a finance company: frontend, Python backend, APIs, authentication and security, DevOps and testing."></li>
+              <li class="t" data-es="Diseño y construcción completados de una plataforma SaaS para una financiera: frontend, backend en Python, APIs, autenticación y seguridad, DevOps y pruebas." data-en="Designed and built a SaaS platform for a finance company: frontend, Python backend, APIs, authentication and security, DevOps and testing."></li>
               <li class="t" data-es="Sitio de 7 rutas con catálogo de 6 servicios (préstamos, hipotecas, financiamiento de vehículos y celulares, seguro vehicular, GPS y traspasos) y landings propias para seguro vehicular y GPS." data-en="7-route website with a 6-service catalog (loans, mortgages, vehicle and phone financing, vehicle insurance, GPS and transfers) and dedicated landing pages for vehicle insurance and GPS."></li>
               <li class="t" data-es="Solicitud de crédito digital de 6 pasos, adaptada del formulario en papel de la financiera." data-en="6-step digital credit application, adapted from the company's paper form."></li>
             </ul>
@@ -630,17 +264,17 @@
   <section id="projects" class="block">
     <div class="wrap">
       <div class="sec-head">
-        <h2 class="t" data-es="Proyectos" data-en="Projects"></h2>
+        <p class="eyebrow">05 / PORTFOLIO</p><h2 class="t" data-es="Ideas convertidas en proyectos." data-en="Ideas turned into projects."></h2>
         <p class="lead t"
-           data-es="Tres sitios en producción, una plataforma fintech y una app móvil en desarrollo."
-           data-en="Three sites in production, a fintech platform and a mobile app in progress."></p>
+           data-es="Cinco proyectos completados. Prestave, mi único proyecto en desarrollo."
+           data-en="Five completed projects. Prestave is my only project in development."></p>
       </div>
-      <div class="proj-list">
+      <div class="proj-list"><article class="card proj prestave"><div class="proj-copy"><span class="proj-kind progress"><span class="t " data-es="ÚNICO PROYECTO EN DESARROLLO" data-en="ONLY PROJECT IN DEVELOPMENT">ÚNICO PROYECTO EN DESARROLLO</span></span><h3>Prestave</h3><p class="t " data-es="Mi proyecto actual en desarrollo. Un nuevo producto al que estoy dando forma, con foco en la arquitectura y la calidad del software." data-en="My current project in development. A new product I am shaping with a focus on architecture and software quality.">Mi proyecto actual en desarrollo. Un nuevo producto al que estoy dando forma, con foco en la arquitectura y la calidad del software.</p><div class="proj-links"><a class="btn btn-ghost" href="https://wa.me/18292714334?text=Hola%20Jenifer%2C%20vi%20tu%20portafolio%20y%20quiero%20hablar%20de%20un%20proyecto." target="_blank" rel="noopener"><span class="t " data-es="Conversemos sobre Prestave" data-en="Let’s talk about Prestave">Conversemos sobre Prestave</span> ↗</a></div></div><div class="development-panel"><span class="eyebrow">PRESTAVE / <span class="t " data-es="EN DESARROLLO" data-en="IN DEVELOPMENT">EN DESARROLLO</span></span><div class="development-mark" aria-hidden="true">P<span>_</span></div><p><span class="t " data-es="De la idea al siguiente paso." data-en="From idea to the next step.">De la idea al siguiente paso.</span></p><div class="build-line"><i></i></div></div></article>
 
         <!-- Wolfs -->
         <article class="card proj g-green">
           <div class="proj-copy">
-            <span class="proj-kind t" data-es="E-commerce · En producción" data-en="E-commerce · In production"></span>
+            <span class="proj-kind t" data-es="E-commerce · Completado" data-en="E-commerce · Completed"></span>
             <h3>Wolfs Fitness Market</h3>
             <p class="t"
                data-es="Tienda en línea de suplementos deportivos con pagos reales en PayPal Live, facturas automáticas por correo, panel de administración y un servidor Ubuntu configurado desde cero."
@@ -667,7 +301,7 @@
         <!-- JM ODEPEM -->
         <article class="card proj rev g-cer">
           <div class="proj-copy">
-            <span class="proj-kind t" data-es="Fintech · En producción" data-en="Fintech · In production"></span>
+            <span class="proj-kind t" data-es="Fintech · Completado" data-en="Fintech · Completed"></span>
             <h3>JM ODEPEM Financiera</h3>
             <p class="t"
                data-es="Sitio institucional para una financiera, con cotizador de préstamos en tiempo real, solicitud de 6 pasos que genera un PDF y lo envía por correo, y el portal JM Inversiones con catálogo de 12 vehículos."
@@ -695,7 +329,7 @@
         <!-- Sosa-Frotman -->
         <article class="card proj g-teal">
           <div class="proj-copy">
-            <span class="proj-kind t" data-es="Fintech · En desarrollo" data-en="Fintech · In progress"></span>
+            <span class="proj-kind t" data-es="Fintech · Completado" data-en="Fintech · Completed"></span>
             <h3>Sosa-Frotman Inversiones</h3>
             <p class="t"
                data-es="Plataforma web para una financiera en Moca: catálogo de servicios (préstamos, financiamiento de vehículos y celulares, seguro vehicular, GPS y traspasos) y una solicitud de crédito digital de 6 pasos. Backend en Python."
@@ -705,9 +339,12 @@
               <span class="chip t" data-es="Auth y seguridad" data-en="Auth &amp; security"></span>
               <span class="chip">DevOps</span><span class="chip">Testing</span>
             </div>
+            <div class="proj-links">
+              <a class="btn btn-secondary" href="https://sosafrotman.com" target="_blank" rel="noopener"><span class="t" data-es="Ver sitio en vivo" data-en="Visit live site">Ver sitio en vivo</span> ↗</a>
+            </div>
           </div>
           <div class="frame" aria-hidden="true">
-            <div class="frame-bar"><div class="frame-dots"><i></i><i></i><i></i></div><div class="frame-url">Sosa-Frotman Inversiones</div></div>
+            <div class="frame-bar"><div class="frame-dots"><i></i><i></i><i></i></div><div class="frame-url">sosafrotman.com</div></div>
             <div class="frame-body">
               <div class="steps-label t" data-es="Solicitud de crédito · paso 2 de 6" data-en="Credit application · step 2 of 6"></div>
               <div class="steps"><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i></div>
@@ -721,7 +358,7 @@
         <!-- Rangerr -->
         <article class="card proj rev g-pink">
           <div class="proj-copy">
-            <span class="proj-kind t" data-es="Marca fitness · En producción" data-en="Fitness brand · In production"></span>
+            <span class="proj-kind t" data-es="Marca fitness · Completado" data-en="Fitness brand · Completed"></span>
             <h3>Rangerr Aesthetic</h3>
             <p class="t"
                data-es="Landing de alto impacto visual para coaching personal, con estética oscura estilo Raw Nutrition, video hero y feed oficial de Instagram integrado."
@@ -747,7 +384,7 @@
         <!-- FitTrack -->
         <article class="card proj g-purple">
           <div class="proj-copy">
-            <span class="proj-kind t" data-es="App móvil · En desarrollo" data-en="Mobile app · In progress"></span>
+            <span class="proj-kind t" data-es="App móvil · Completado" data-en="Mobile app · Completed"></span>
             <h3>FitTrack</h3>
             <p class="t"
                data-es="App móvil de salud y rendimiento atlético. Calcula tu gasto energético diario total (TDEE), calorías activas y macronutrientes, con una interfaz inspirada en Strava."
@@ -781,7 +418,7 @@
   <section id="certs" class="block">
     <div class="wrap">
       <div class="sec-head">
-        <h2 class="t" data-es="Certificaciones" data-en="Certifications"></h2>
+        <p class="eyebrow">06 / FORMACIÓN CONTINUA</p><h2 class="t" data-es="Certificaciones" data-en="Certifications"></h2>
       </div>
 
       <article class="card scrum g-teal">
@@ -815,7 +452,7 @@
   <section id="education" class="block">
     <div class="wrap">
       <div class="sec-head">
-        <h2 class="t" data-es="Educación" data-en="Education"></h2>
+        <p class="eyebrow">07 / EDUCACIÓN</p><h2 class="t" data-es="Educación" data-en="Education"></h2>
       </div>
       <div class="edu-grid">
         <article class="card edu g-navy">
@@ -844,13 +481,13 @@
       <div class="card g-purple">
         <div class="contact">
           <div>
-            <h2 class="t" data-es="¿Tienes un proyecto en mente?" data-en="Have a project in mind?"></h2>
+            <h2 class="t" data-es="Tu próxima realidad empieza con una idea." data-en="Your next reality starts with an idea."></h2>
             <p class="lead t"
                data-es="Disponible para puestos Full Stack a tiempo completo, proyectos freelance o contratos remotos."
                data-en="Available for full-time Full Stack roles, freelance projects or remote contracts."></p>
             <div class="contact-links">
               <a class="c-row" href="mailto:jeniferreyesperez@gmail.com"><span>Email</span><span>jeniferreyesperez@gmail.com</span></a>
-              <a class="c-row" href="tel:+18296474052"><span class="t" data-es="Teléfono" data-en="Phone"></span><span>829-647-4052</span></a>
+              <a class="c-row" href="tel:+18292714334"><span class="t" data-es="Teléfono" data-en="Phone"></span><span>829-271-4334</span></a>
               <a class="c-row" href="https://linkedin.com/in/jenifer-reyes-perez-9613a1399" target="_blank" rel="noopener"><span>LinkedIn</span><span>in/jenifer-reyes-perez</span></a>
             </div>
           </div>
@@ -859,8 +496,8 @@
             <p class="t"
                data-es="Si prefieres una respuesta rápida sobre una vacante o proyecto, escríbeme directamente."
                data-en="If you'd like a quick reply about a role or project, message me directly."></p>
-            <a class="btn btn-wa" href="https://wa.me/18296474052?text=Hola%20Jenifer%2C%20vi%20tu%20portafolio%20y%20me%20interesa%20contactarte." target="_blank" rel="noopener">
-              <span class="t" data-es="Abrir WhatsApp · 829-647-4052" data-en="Open WhatsApp · 829-647-4052"></span>
+            <a class="btn btn-wa" href="https://wa.me/18292714334?text=Hola%20Jenifer%2C%20vi%20tu%20portafolio%20y%20me%20interesa%20contactarte." target="_blank" rel="noopener">
+              <span class="t" data-es="Abrir WhatsApp · 829-271-4334" data-en="Open WhatsApp · 829-271-4334"></span>
             </a>
           </div>
         </div>
@@ -875,7 +512,7 @@
     <div class="wrap">
       <div class="foot-grid">
         <div>
-          <div class="foot-brand">Jenifer Reyes Pérez</div>
+          <div class="foot-brand">JENIX<span>.DEV</span></div><p>Jenifer Reyes Pérez</p>
           <p class="foot-note t" data-es="Ingeniera de Sistemas y desarrolladora Full Stack. Santiago de los Caballeros, República Dominicana." data-en="Systems Engineer and Full Stack developer. Santiago de los Caballeros, Dominican Republic."></p>
         </div>
         <div>
@@ -900,7 +537,7 @@
           <ul>
             <li><a href="mailto:jeniferreyesperez@gmail.com">Email</a></li>
             <li><a href="https://linkedin.com/in/jenifer-reyes-perez-9613a1399" target="_blank" rel="noopener">LinkedIn</a></li>
-            <li><a href="https://wa.me/18296474052" target="_blank" rel="noopener">WhatsApp</a></li>
+            <li><a href="https://wa.me/18292714334" target="_blank" rel="noopener">WhatsApp</a></li>
           </ul>
         </div>
       </div>
@@ -908,6 +545,7 @@
     </div>
   </footer>
 
+  <a class="whatsapp-float" href="https://wa.me/18292714334?text=Hola%20Jenifer%2C%20vi%20tu%20portafolio%20y%20quiero%20hablar%20de%20un%20proyecto." target="_blank" rel="noopener" aria-label="WhatsApp: 829-271-4334"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.5L3 20.5l1.3-4.8A8.5 8.5 0 1 1 20.5 11.6Z"/><path d="M8 7.4c.6-.5 1.2 1.7 1.3 2s-.6.8-.6 1.1c.6 1.3 1.6 2.3 3 2.9.4.1.9-.8 1.2-.8s2.2.9 2.2 1.3c0 1-1 1.6-1.9 1.6-3.6-.2-6.5-3.1-6.6-6.1 0-.9.5-1.8 1.4-2Z"/></svg><span>WhatsApp</span></a>
   <script>
     var titles = {
       es: 'Jenifer Reyes Pérez — Ingeniera de Sistemas y Full Stack',
@@ -934,3 +572,4 @@
   </script>
 </body>
 </html>
+
